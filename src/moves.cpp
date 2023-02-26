@@ -302,11 +302,11 @@ void Rubik::moveUPrime(){
 }
 
 void Rubik::moveD(){
-    horizontalMove(0, 1);
+    horizontalMove(1, 1);
 }
 
 void Rubik::moveDPrime(){
-    horizontalMove(1, 1);
+    horizontalMove(0, 1);
 }
 
 void Rubik::moveL(){
