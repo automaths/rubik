@@ -3,5 +3,6 @@
 
 int main()
 {
-    print_ascii_rubik();
+    Rubik   rk(9);
+    print_ascii_rubik(rk);
 }
