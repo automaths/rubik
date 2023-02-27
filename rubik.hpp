@@ -65,6 +65,10 @@
 
 using namespace std;
 
+
+
+
+
 class Rubik {
     private:
     int rubik[6][9];
@@ -84,28 +88,28 @@ class Rubik {
         return rubik[position / 9][position % 9];
     }
 
+    // void rotate(char faceid, int direction);
+
     void horizontalMove(int direction, int rank);
     void verticalMove(int direction, int rank);
     void faceMove(int direction);
     void backMove(int direction);
 
+
     void moveU();
     void moveUPrime();
     void moveD();
     void moveDPrime();
-
     void moveR();
     void moveRPrime();
     void moveL();
     void moveLPrime();
-
     void moveF();
     void moveFPrime();
-
     void moveB();
     void moveBPrime();
 
-
+    
 
 
 

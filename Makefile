@@ -3,13 +3,13 @@ NAME        :=	rubik
 SRC_DIR     := 	src
 OBJ_DIR     := 	obj
 SRCS        := 	main.cpp \
+				Cubos.cpp \
 				ascii_rubik.cpp \
-				moves.cpp \
 
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
-OBJS        := $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
+OBJS        := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-CC          := clang++
+CC          := g++
 # CPPFLAGS    := -I include
 
 RM          := rm -f
@@ -22,7 +22,7 @@ $(NAME): $(OBJS)
 		$(CC) $(OBJS) -o $(NAME)
 		$(info CREATED $(NAME))
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 		$(DIR_DUP)
 		$(CC) -c -o $@ $<
 		$(info CREATED $@)

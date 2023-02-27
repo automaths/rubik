@@ -1,20 +1,56 @@
 
-#include "../rubik.hpp"
+#include "../Cubos.hpp"
+#include <list>
+#include <set>
+#include <iostream>
+
+void bfs_for_cross(Cube& cube)
+{
+    std::list<Cube> queue;
+    std::set<string>  visited;
+
+    queue.push_back(cube);
+    while (!queue.empty())
+    {
+        Cube current = queue.front();
+        queue.pop_front();
+        if (current.is_cross())
+        {
+            cout << "Found cross!" << endl;
+            return;
+        }
+        if (visited.find(current.to_string_forcross()) != visited.end())
+            continue;
+        visited.insert(current.to_string_forcross());
+        for (char face : Cube::face_names)
+        {
+            for (int i = 0; i < 3; ++i)
+            {
+                Cube next = current;
+                next.rotate(face, i);
+                queue.push_back(next);
+            }
+        }
+        cout << "Queue size: " << queue.size() << endl;
+    }
+}
 
 int main()
 {
-    Rubik   rk(9);
-    // rk.moveU();
-    // rk.moveUPrime();
-    // rk.moveD();
-    // rk.moveDPrime();
-    // rk.moveL();
-    // rk.moveLPrime();
-    // rk.moveR();
-    // rk.moveRPrime();
-    // rk.moveF();
-    // rk.moveFPrime();
-    // rk.moveB();
-    // rk.moveBPrime();
+    Cube::init_members();
+    Cube   rk;
+
     print_ascii_rubik(rk);
+    rk.rotate('r', 1);
+    print_ascii_rubik(rk);
+    exit(1);
+    rk.rotate('f', 2);
+    rk.rotate('b', 3);
+    rk.rotate('d', 2);
+    print_ascii_rubik(rk);
+    rk.rotate('l', 3);
+    rk.rotate('r', 2);
+    rk.rotate('l', 1);
+    print_ascii_rubik(rk);
+    // bfs_for_cross(rk);
 }
