@@ -1,5 +1,5 @@
 
-#include "../rubik.hpp"
+#include "../Cubos.hpp"
 
 int main()
 {
