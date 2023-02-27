@@ -1,5 +1,7 @@
 from tkinter import *
 import random
+import sys
+import time
 
 
 class Square:
@@ -206,22 +208,33 @@ class Cube:
         print(nb , "done", "visited", len(visited))
         return res
 
+def read_moves():
+    return [line.split() for line in sys.stdin]
+
+def launch(moves):
+    for move in moves:
+        face = move[0]
+        direction = 1
+        if len(move) == 2:
+            direction = 2 + ['2', '\''].index(move[1])
+        cube.rotate(face, direction)
+        time.sleep(0.2)
+
 def key_press(event):
     # code = event.keycode
     if event.char == 'q':
         root.destroy()
         exit()
-    # elif event.char == 'p':
-    #     launch()
-    #     return
-    if event.char.lower() in ['l', 'r', 'u', 'd', 'f', 'b']:
+    elif event.char == 'p':
+        launch()
+    elif event.char.lower() in ['l', 'r', 'u', 'd', 'f', 'b']:
         dir = -1 if event.char.isupper() else 1
         cube.rotate(event.char.lower(), dir)
 
 canvas = None
 cube = Cube()
-cube.shuffle()
-cube.backtrack_for_cross()
+# cube.shuffle()
+# cube.backtrack_for_cross()
 # exit()
 root = Tk()
 root.title('Rubik\'s Cube')
@@ -229,6 +242,8 @@ root.title('Rubik\'s Cube')
 canvas = Canvas(root, width=1050, height=750)
 canvas.pack()
 cube.draw()
+
+moves = read_moves()
 
 root.bind('<KeyPress>', key_press)
 root.mainloop()
