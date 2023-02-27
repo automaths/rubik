@@ -209,15 +209,20 @@ class Cube:
         return res
 
 def read_moves():
-    return [line.split() for line in sys.stdin]
+    res = []
+    for line in sys.stdin:
+        res.extend(line.split())
+    return res
 
-def launch(moves):
+def launch():
     for move in moves:
-        face = move[0]
+        print(move)
+        face = move[0].lower()
         direction = 1
         if len(move) == 2:
             direction = 2 + ['2', '\''].index(move[1])
         cube.rotate(face, direction)
+        root.update()
         time.sleep(0.2)
 
 def key_press(event):
