@@ -115,6 +115,7 @@ class Face:
                 crown[i].update(crown[i-3].color)
             for i in range(3):
                 crown[i].update(tmp[i])
+        root.update()
 
 def lol_func(i, j):
     if j == 1:
@@ -222,7 +223,7 @@ def launch():
         if len(move) == 2:
             direction = 2 + ['2', '\''].index(move[1])
         cube.rotate(face, direction)
-        root.update()
+        # root.update()
         time.sleep(0.2)
 
 def key_press(event):
