@@ -16,5 +16,5 @@ int main()
     // rk.moveFPrime();
     // rk.moveB();
     // rk.moveBPrime();
-    print_ascii_rubik(rk);
+    // print_ascii_rubik(rk);
 }

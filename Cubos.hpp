@@ -47,12 +47,13 @@ class Cube
 {
 const static string corner_names[8];
 const static string edge_names[12];
-const static string face_names[6];
+const static char face_names[6];
 // const static string face_corners[4][6];
 // const static string face_edges[4][6];
 
-static map<string, vector<string> > face_corners;
-static map<string, vector<string> > face_edges;
+static map<char, vector<string> > face_corners;
+static map<char, vector<string> > face_edges;
+static void init_members();
 
 public:
     map<string, Corner> corners;
@@ -64,18 +65,10 @@ public:
             corners[corner_names[i]] = Corner(corner_names[i]);
         for (int i = 0; i < 12; ++i)
             edges[edge_names[i]] = Edge(edge_names[i]);
-
-        // for (int i = 0; i < 6; ++i)
-        //     rot_corner_tabs[face_names[i]] = face_corners[i];
-        // for (int i = 0; i < 6; ++i)
-        //     rot_edge_tabs[face_names[i]] = face_edges[i];
-        // for (string name : corner_names)
-        //     corners[name] = Corner(name);
-        // for (string name : edge_names)
-        //     edges[name] = Edge(name);
     }
-
     void rotate(char faceid, int direction);
+    void apply_move(string move);
+    vector<int> get_face(char faiceid);
 };
 
 #endif
