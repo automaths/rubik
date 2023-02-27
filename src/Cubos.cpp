@@ -191,8 +191,9 @@ void Cube::rotate(char faceid, int direction)
         Edge tmpE = edges[rot_edges[0]];
         edges[rot_edges[0]] = edges[rot_edges[1]];
         edges[rot_edges[1]] = edges[rot_edges[2]];
-        edges[rot_edges[2]] = tmpE;
-        for (int i = 0; edge_pattern && i < 3; i++) {
+        edges[rot_edges[2]] = edges[rot_edges[3]];
+        edges[rot_edges[3]] = tmpE;
+        for (int i = 0; edge_pattern && i < 4; i++) {
             edges[rot_edges[i]].orientation += 1;
             edges[rot_edges[i]].orientation %= 2;
         }    
@@ -216,9 +217,9 @@ bool Cube::is_cross()
 string Cube::to_string_forcross()
 {
     string s = "";
-    for (string edge_name : Cube::face_edges['u'])
+    for (string& edge_name : Cube::face_edges['u'])
     {
-        Edge edge = edges[edge_name];
+        Edge& edge = edges[edge_name];
         s += edge.name + to_string(edge.orientation);
     }
     return s;

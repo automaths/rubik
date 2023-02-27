@@ -104,6 +104,7 @@ public:
     Edge& operator=(Edge const &other)
     {
         name = other.name;
+        orientation = other.orientation;
         return *this;
     }
 };
