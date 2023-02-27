@@ -3,7 +3,7 @@
 
 int main()
 {
-    Rubik   rk(9);
+    Cube   rk;
     // rk.moveU();
     // rk.moveUPrime();
     // rk.moveD();

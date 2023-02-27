@@ -1,9 +1,9 @@
 #ifndef CUBE_HPP
 #define CUBE_HPP
 
-#include <map>
-#include <string>
-#include <vector>
+# include <map>
+# include <string>
+# include <vector>
 
 using namespace std;
 
@@ -41,8 +41,6 @@ public:
         return *this;
     }
 };
-
-
 
 
 class Cube

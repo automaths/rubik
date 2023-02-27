@@ -15,12 +15,12 @@ CornerCubieMove: array[U..B] of CornerCubie =
 
  EdgeToString: array [UR..BR] of String = ('UR','UF','UL','UB','DR','DF','DL','DB','FR','FL','BL','BR');
 
- EdgeCubieMove: array[U..B] of EdgeCubie = ( ((e:UB;o:0;oA:1),(e:UR;o:0;oA:1),(e:UF;o:0;oA:1),(e:UL;o:0;oA:1),(e:DR;o:0;oA:0),(e:DF;o:0;oA:0), //U
-  (e:DL;o:0;oA:0),(e:DB;o:0;oA:0),(e:FR;o:0;oA:0),(e:FL;o:0;oA:0),(e:BL;o:0;oA:0),(e:BR;o:0;oA:0)), ((e:FR;o:0;oA:1),(e:UF;o:0;oA:0),(e:UL;o:0;oA:0),(e:UB;o:0;oA:0),(e:BR;o:0;oA:1),(e:DF;o:0;oA:0), //R 
-  (e:DL;o:0;oA:0),(e:DB;o:0;oA:0),(e:DR;o:0;oA:1),(e:FL;o:0;oA:0),(e:BL;o:0;oA:0),(e:UR;o:0;oA:1)), ((e:UR;o:0;oA:0),(e:FL;o:1;oA:1),(e:UL;o:0;oA:0),(e:UB;o:0;oA:0),(e:DR;o:0;oA:0),(e:FR;o:1;oA:1), //F 
-  (e:DL;o:0;oA:0),(e:DB;o:0;oA:0),(e:UF;o:1;oA:1),(e:DF;o:1;oA:1),(e:BL;o:0;oA:0),(e:BR;o:0;oA:0)), ((e:UR;o:0;oA:0),(e:UF;o:0;oA:0),(e:UL;o:0;oA:0),(e:UB;o:0;oA:0),(e:DF;o:0;oA:1),(e:DL;o:0;oA:1), //D 
-  (e:DB;o:0;oA:1),(e:DR;o:0;oA:1),(e:FR;o:0;oA:0),(e:FL;o:0;oA:0),(e:BL;o:0;oA:0),(e:BR;o:0;oA:0)), ((e:UR;o:0;oA:0),(e:UF;o:0;oA:0),(e:BL;o:0;oA:1),(e:UB;o:0;oA:0),(e:DR;o:0;oA:0),(e:DF;o:0;oA:0), //L 
-  (e:FL;o:0;oA:1),(e:DB;o:0;oA:0),(e:FR;o:0;oA:0),(e:UL;o:0;oA:1),(e:DL;o:0;oA:1),(e:BR;o:0;oA:0)), ((e:UR;o:0;oA:0),(e:UF;o:0;oA:0),(e:UL;o:0;oA:0),(e:BR;o:1;oA:1),(e:DR;o:0;oA:0),(e:DF;o:0;oA:0), //B 
-  (e:DL;o:0;oA:0),(e:BL;o:1;oA:1),(e:FR;o:0;oA:0),(e:FL;o:0;oA:0),(e:UB;o:1;oA:1),(e:DB;o:1;oA:1)) );
+ EdgeCubieMove: array[U..B] of EdgeCubie = (\
+((e:UB;o:0;oA:1),(e:UR;o:0;oA:1),(e:UF;o:0;oA:1),(e:UL;o:0;oA:1),(e:DR;o:0;oA:0),(e:DF;o:0;oA:0), (e:DL;o:0;oA:0),(e:DB;o:0;oA:0),(e:FR;o:0;oA:0),(e:FL;o:0;oA:0),(e:BL;o:0;oA:0),(e:BR;o:0;oA:0)), //U
+((e:FR;o:0;oA:1),(e:UF;o:0;oA:0),(e:UL;o:0;oA:0),(e:UB;o:0;oA:0),(e:BR;o:0;oA:1),(e:DF;o:0;oA:0), (e:DL;o:0;oA:0),(e:DB;o:0;oA:0),(e:DR;o:0;oA:1),(e:FL;o:0;oA:0),(e:BL;o:0;oA:0),(e:UR;o:0;oA:1)),//R 
+((e:UR;o:0;oA:0),(e:FL;o:1;oA:1),(e:UL;o:0;oA:0),(e:UB;o:0;oA:0),(e:DR;o:0;oA:0),(e:FR;o:1;oA:1), (e:DL;o:0;oA:0),(e:DB;o:0;oA:0),(e:UF;o:1;oA:1),(e:DF;o:1;oA:1),(e:BL;o:0;oA:0),(e:BR;o:0;oA:0)),//F 
+((e:UR;o:0;oA:0),(e:UF;o:0;oA:0),(e:UL;o:0;oA:0),(e:UB;o:0;oA:0),(e:DF;o:0;oA:1),(e:DL;o:0;oA:1), (e:DB;o:0;oA:1),(e:DR;o:0;oA:1),(e:FR;o:0;oA:0),(e:FL;o:0;oA:0),(e:BL;o:0;oA:0),(e:BR;o:0;oA:0)),//D 
+((e:UR;o:0;oA:0),(e:UF;o:0;oA:0),(e:BL;o:0;oA:1),(e:UB;o:0;oA:0),(e:DR;o:0;oA:0),(e:DF;o:0;oA:0), (e:FL;o:0;oA:1),(e:DB;o:0;oA:0),(e:FR;o:0;oA:0),(e:UL;o:0;oA:1),(e:DL;o:0;oA:1),(e:BR;o:0;oA:0)),//L 
+((e:UR;o:0;oA:0),(e:UF;o:0;oA:0),(e:UL;o:0;oA:0),(e:BR;o:1;oA:1),(e:DR;o:0;oA:0),(e:DF;o:0;oA:0), (e:DL;o:0;oA:0),(e:BL;o:1;oA:1),(e:FR;o:0;oA:0),(e:FL;o:0;oA:0),(e:UB;o:1;oA:1),(e:DB;o:1;oA:1)) );//B 
 
   
