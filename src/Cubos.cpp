@@ -2,7 +2,6 @@
 
 Cube::corner_names = {"URF", "UFL", "ULB", "UBR", "DFR", "DLF", "DBL", "DRB"};
 
-
 Cube::edge_names = {"UR", "UF", "UL", "UB", "DR", "DF", "DL", "DB", "FR", "FL", "BL", "BR"};
 
 Cube::face_names = {'u', 'r', 'f', 'd', 'l', 'b'};
@@ -23,7 +22,6 @@ Cube::face_corners['l'] = {"UFL", "ULB", "DBL", "DLF"}; // ccw
 Cube::face_corners['b'] = {"ULB", "UBR", "DRB", "DBL"}; // ccw
 //  ((ULB-> UBR; o: 1), (UBR-> DRB; o: 2), (DRB-> DBL; o: 1), (DBL-> ULB; o: 2)));  //B
 
-
 ((e:UB;o:0;oA:1),(e:UR;o:0;oA:1),(e:UF;o:0;oA:1),(e:UL;o:0;oA:1),(e:DR;o:0;oA:0),(e:DF;o:0;oA:0), //U 
 (e:DL;o:0;oA:0),(e:DB;o:0;oA:0),(e:FR;o:0;oA:0),(e:FL;o:0;oA:0),(e:BL;o:0;oA:0),(e:BR;o:0;oA:0)), ((e:FR;o:0;oA:1),(e:UF;o:0;oA:0),(e:UL;o:0;oA:0),(e:UB;o:0;oA:0),(e:BR;o:0;oA:1),(e:DF;o:0;oA:0), //R 
 (e:DL;o:0;oA:0),(e:DB;o:0;oA:0),(e:DR;o:0;oA:1),(e:FL;o:0;oA:0),(e:BL;o:0;oA:0),(e:UR;o:0;oA:1)), ((e:UR;o:0;oA:0),(e:FL;o:1;oA:1),(e:UL;o:0;oA:0),(e:UB;o:0;oA:0),(e:DR;o:0;oA:0),(e:FR;o:1;oA:1), //F 
@@ -32,20 +30,17 @@ Cube::face_corners['b'] = {"ULB", "UBR", "DRB", "DBL"}; // ccw
 (e:FL;o:0;oA:1),(e:DB;o:0;oA:0),(e:FR;o:0;oA:0),(e:UL;o:0;oA:1),(e:DL;o:0;oA:1),(e:BR;o:0;oA:0)), ((e:UR;o:0;oA:0),(e:UF;o:0;oA:0),(e:UL;o:0;oA:0),(e:BR;o:1;oA:1),(e:DR;o:0;oA:0),(e:DF;o:0;oA:0), //B 
 (e:DL;o:0;oA:0),(e:BL;o:1;oA:1),(e:FR;o:0;oA:0),(e:FL;o:0;oA:0),(e:UB;o:1;oA:1),(e:DB;o:1;oA:1))
 
-(UR->DL;o:0;),(UF->DB;o:0;),(UL->FR;o:0;),(UB->FL;o:0;),(DR->BL;o:0;),(DF->BR;o:0;), (DL->FR;o:0;),(DB->UF;o:0;),(FR->UL;o:0;),(FL->UB;o:0;),(BL->BR;o:0;),(BR->DF;o:0;), //R 
-
+Cub:face_edges['u'] = {"UL", "UB", "UR", "UF"}; // ccw order
+(UL->UB;o:0;),(UB->UR;o:0;),(UR->UF;o:0;),(UF->UL;o:0;),(DR;o:0;),(DF;o:0;)
 Cube::face_edges['r'] = {"BR", "DR", "FR", "UR"}; // ccw order
-(UR->DL;o:0),(UF->DB;o:0),(UL->DR;o:0),(UB->FL;o:0),(DR->BL;o:0),(DF->UR;o:0), (DL->UR;o:0),(DB->FL;o:1),(FR->UL;o:0),(FL->UB;o:0),(BL->DR;o:0),(BR->FR;o:1) //F 
 
+// (UR->DL;o:0;),(UF->DB;o:0;),(UL->FR;o:0;),(UB->FL;o:0;),(DR->BL;o:0;),(DF->BR;o:0;), (DL->FR;o:0;),(DB->UF;o:0;),(FR->UL;o:0;),(FL->UB;o:0;),(BL->BR;o:0;),(BR->DF;o:0;), //R 
 Cube::face_edges['f'] = {"FL", "DF", "FR", "UF"}; // ccw order
-(UR->DL;o:0;),(UF->DB;o:0;),(UL->DR;o:0;),(UB->FL;o:0;),(DR->BL;o:0;),(DF->UR;o:0;), (DL->UR;o:0;),(DB->FL;o:1;),(FR->UL;o:0;),(FL->UB;o:0;),(BL->DR;o:0;),(BR->FR;o:1;), //F 
-
+// (UR->DL;o:0;),(UF->DB;o:0;),(UL->DR;o:0;),(UB->FL;o:0;),(DR->BL;o:0;),(DF->UR;o:0;), (DL->UR;o:0;),(DB->FL;o:1;),(FR->UL;o:0;),(FL->UB;o:0;),(BL->DR;o:0;),(BR->FR;o:1;), //F 
 Cube::face_edges['d'] = {"DL", "DB", "DL", "DF"}; // ccw order
-Cube::edge_names = {"UR", "UF", "UL", "UB", "DR", "DF", "DL", "DB", "FR", "FL", "BL", "BR"};
-(DL;o:0;),(DB;o:0;),(UF;o:1;),(DF;o:1;),(BL;o:0;),(BR;o:0;), (UR;o:0;),(UF;o:0;),(UL;o:0;),(UB;o:0;),(DF;o:0;),(DL;o:0;), //D 
+// (UR->DL;o:0;),(UF->DB;o:0;),(UL->UF;o:1;),(UB->DF;o:1;),(DR->BL;o:0;),(DF->BR;o:0;), (DL->UR;o:0;),(DB->UF;o:0;),(FR->UL;o:0;),(FL->UB;o:0;),(BL->DF;o:0;),(BR->DL;o:0;), //D
 Cube::face_edges['l'] = {"FL", "DL", "BL", "UL"}; //ccw order
 Cube::face_edges['b'] = {"BR", "DB", "BL", "UB"}; // ccw order
-Cub:face_edges['u'] = {"UL", "UB", "UR", "UF"}; // ccw order
 
 map<char, vector<string>>; rot_corner_tabs;
 map<char, vector<string>> rot_edge_tabs;
