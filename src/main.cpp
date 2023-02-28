@@ -49,7 +49,6 @@ int main()
     rk.rotate('l', 3);
     rk.rotate('r', 2);
     rk.rotate('l', 1);
-    rk.rotate('d', 3);
     rk.rotate('r', 2);
     rk.rotate('u', 1);
     rk.rotate('f', 3);

@@ -217,10 +217,10 @@ bool Cube::is_cross()
 string Cube::to_string_forcross()
 {
     string s = "";
-    for (string& edge_name : Cube::face_edges['u'])
+    for (auto edge : edges)
     {
-        Edge& edge = edges[edge_name];
-        s += edge.name + to_string(edge.orientation);
+        if (edge.second.name[0] == 'U')
+            s += edge.first + to_string(edge.second.orientation);
     }
     return s;
 }
