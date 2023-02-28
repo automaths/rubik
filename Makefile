@@ -9,7 +9,7 @@ SRCS        := 	main.cpp \
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-CC          := g++
+CC          := g++ -std=c++14
 # CPPFLAGS    := -I include
 
 RM          := rm -f
