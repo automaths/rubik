@@ -104,6 +104,7 @@ public:
     Edge& operator=(Edge const &other)
     {
         name = other.name;
+        orientation = other.orientation;
         return *this;
     }
 };
@@ -138,6 +139,7 @@ public:
     vector<int> get_face(char faceid);
     vector<int> get_facelets();
 
+    void shuffle(int n = 10000);
     bool is_cross();
     string to_string_forcross(); // fonction pour pouvoir hasher un etat dans la recherche de la premiere step
 };
