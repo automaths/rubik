@@ -22,17 +22,18 @@ void bfs_for_cross(Cube& cube)
         {
             for (int i = 0; i < 3; ++i)
             {
-                Cube next = current;
+                queue.push_back(current);
+                Cube &next = queue.back();
                 next.rotate(face, i);
                 if (next.is_cross())
                 {
                     cout << "Found cross!" << endl;
+                    cube = next;
                     return;
                 }
-                queue.push_back(next);
             }
         }
-        if (visited.size() % 100 == 0)
+        if (visited.size() % 1000 == 0)
             cout << "Visited size: " << visited.size() << endl;
     }
 }
@@ -43,22 +44,10 @@ int main()
     Cube   rk;
 
     // print_ascii_rubik(rk);
-    rk.rotate('u', 2);
-    rk.rotate('f', 2);
-    rk.rotate('b', 3);
-    rk.rotate('d', 2);
-    rk.rotate('l', 3);
-    rk.rotate('r', 2);
-    rk.rotate('l', 1);
-    rk.rotate('r', 2);
-    rk.rotate('u', 1);
-    rk.rotate('f', 3);
-    rk.rotate('l', 2);
-    rk.rotate('d', 3);
-    rk.rotate('r', 1);
-    rk.rotate('u', 2);
-    print_ascii_rubik(rk);
+    // rk.rotate('b', 1);
+    // print_ascii_rubik(rk);
+
+    rk.shuffle();
     bfs_for_cross(rk);
-
-
+    print_ascii_rubik(rk);
 }

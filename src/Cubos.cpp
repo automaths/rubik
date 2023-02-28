@@ -177,28 +177,39 @@ void Cube::rotate(char faceid, int direction)
     for (int d = 0; d < direction; d++)
     {
         // Permute corners
+        for (int i = 0; corner_pattern && i < 4; i++) {
+            corners[rot_corners[i]].orientation += 1 + i%2;
+            corners[rot_corners[i]].orientation %= 3;
+        }
         Corner tmpC = corners[rot_corners[0]];
         corners[rot_corners[0]] = corners[rot_corners[1]];
         corners[rot_corners[1]] = corners[rot_corners[2]];
         corners[rot_corners[2]] = corners[rot_corners[3]];
         corners[rot_corners[3]] = tmpC;
-        for (int i = 0; corner_pattern && i < 4; i++) {
-            corners[rot_corners[i]].orientation += 1 + i%2;
-            corners[rot_corners[i]].orientation %= 3;
-        }
         
         // Permute edges
+        for (int i = 0; edge_pattern && i < 4; i++) {
+            edges[rot_edges[i]].orientation += 1;
+            edges[rot_edges[i]].orientation %= 2;
+        }    
         Edge tmpE = edges[rot_edges[0]];
         edges[rot_edges[0]] = edges[rot_edges[1]];
         edges[rot_edges[1]] = edges[rot_edges[2]];
         edges[rot_edges[2]] = edges[rot_edges[3]];
         edges[rot_edges[3]] = tmpE;
-        for (int i = 0; edge_pattern && i < 4; i++) {
-            edges[rot_edges[i]].orientation += 1;
-            edges[rot_edges[i]].orientation %= 2;
-        }    
     }
 }
+
+void Cube::shuffle(int n)
+{
+    srand(time(NULL));
+    for (int i = 0; i < n; i++)
+    {
+        char faceid = Cube::face_names[rand() % 6];
+        rotate(faceid, rand() % 4);
+    }
+}
+
 
 bool Cube::is_cross()
 {
@@ -220,7 +231,7 @@ string Cube::to_string_forcross()
     for (auto edge : edges)
     {
         if (edge.second.name[0] == 'U')
-            s += edge.first + to_string(edge.second.orientation);
+            s += edge.second.name + to_string(edge.second.orientation);
         else
             s += "*";
     }
