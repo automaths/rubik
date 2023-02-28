@@ -116,11 +116,10 @@ public:
 const static string corner_names[8];
 const static string edge_names[12];
 const static char face_names[6];
-// const static string face_corners[4][6];
-// const static string face_edges[4][6];
-
 static map<char, vector<string> > face_corners;
 static map<char, vector<string> > face_edges;
+static map<string, string> corner_names_after_ymove;
+static map<string, string> edge_names_after_ymove;
 static void init_members();
 
 public:
@@ -136,6 +135,7 @@ public:
     }
     void rotate(char faceid, int direction = 1);
     void apply_move(string move);
+    Cube y();
     vector<int> get_face(char faceid);
     vector<int> get_facelets();
 

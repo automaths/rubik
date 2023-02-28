@@ -43,11 +43,15 @@ int main()
     Cube::init_members();
     Cube   rk;
 
-    // print_ascii_rubik(rk);
-    // rk.rotate('b', 1);
-    // print_ascii_rubik(rk);
-
-    rk.shuffle();
-    bfs_for_cross(rk);
+    rk.rotate('b', 1);
+    rk.rotate('r', 1);
+    rk.rotate('u', 1);
     print_ascii_rubik(rk);
+    Cube rk2 = rk.y();
+    print_ascii_rubik(rk2);
+
+    // rk.shuffle();
+    // bfs_for_cross(rk);
+    
+    // print_ascii_rubik(rk);
 }
