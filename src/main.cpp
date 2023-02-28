@@ -4,6 +4,12 @@
 #include <unordered_set>
 #include <iostream>
 
+
+
+
+
+
+
 void bfs_for_cross(Cube& cube)
 {
     std::list<Cube> queue;
@@ -42,12 +48,12 @@ int main()
 {
     Cube::init_members();
     Cube   rk;
-
     // print_ascii_rubik(rk);
     // rk.rotate('b', 1);
     // print_ascii_rubik(rk);
 
     rk.shuffle();
     bfs_for_cross(rk);
+    rk.find_2FL();
     print_ascii_rubik(rk);
 }

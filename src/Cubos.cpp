@@ -3,6 +3,59 @@
 
 using namespace std;
 
+// {"URF", "UFL", "ULB", "UBR", "DFR", "DLF", "DBL", "DRB"};
+
+void Cube::find_2FL()
+{
+    if (corners["URF"].name != "URF" || corners["URF"].orientation != 0)
+    {
+        for (auto corner : corners)
+        {
+            if (corner.second.name == "URF")
+            {
+                if (corner.first == "URF")
+                    return ;
+                else if (corner.first == "UFL")
+                    rotate('u', 3);
+                else if (corner.first == "ULB")
+                    rotate('u', 2);
+                else if (corner.first == "UBR")
+                    rotate('u', 1);
+                else if (corner.first == "DFR")
+                {
+                    rotate('r', 1);
+                    rotate('u', 1);
+                    rotate('r', 3);
+                    rotate('u', 3);
+                }
+                else if (corner.first == "DLF")
+                {
+                    rotate('l', 3);
+                    rotate('u', 3);
+                    rotate('l', 1);                  
+                }
+                else if (corner.first == "DBL")
+                {
+                    rotate('l', 1);
+                    rotate('u', 1);
+                    rotate('l', 3);  
+                    rotate('l', 1);  
+                }
+                else if (corner.first == "DRB")
+                {
+                    rotate('r', 3);
+                    rotate('u', 3);
+                    rotate('r', 1);  
+                    rotate('u', 2);
+                }
+                return ;
+            }
+        }
+    }
+}
+
+
+
 vector<int> Cube::get_facelets()
 {
     vector<int> face(54);
@@ -130,7 +183,6 @@ void Cube::init_members()
     //  ((ULB-> UBR; o: 1), (UBR-> DRB; o: 2), (DRB-> DBL; o: 1), (DBL-> ULB; o: 2)));  //B
 
     // corner pattern : 1 2 1 2 pour faces f, r, b, l sinon 0
-
 
     face_edges['u'] = {"UR", "UB", "UL", "UF"}; // ccw order
     // (UR->UB; o: 0), (UB->UL; o: 0), (UL->UF; o: 0), (UF->UR; o: 0), //U

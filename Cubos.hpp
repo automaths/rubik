@@ -61,12 +61,12 @@
 #define B8 52
 #define B9 53
 
-using namespace std;
-
 #include <string>
 #include <vector>
 #include <map>
 #include <iostream>
+
+using namespace std;
 
 class Cube;
 int print_ascii_rubik(Cube &rk);
@@ -142,6 +142,7 @@ public:
     void shuffle(int n = 10000);
     bool is_cross();
     string to_string_forcross(); // fonction pour pouvoir hasher un etat dans la recherche de la premiere step
+    void find_2FL();
 };
 
 #endif
