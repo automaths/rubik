@@ -221,6 +221,8 @@ string Cube::to_string_forcross()
     {
         if (edge.second.name[0] == 'U')
             s += edge.first + to_string(edge.second.orientation);
+        else
+            s += "*";
     }
     return s;
 }

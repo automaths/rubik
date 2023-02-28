@@ -8,31 +8,32 @@ void bfs_for_cross(Cube& cube)
 {
     std::list<Cube> queue;
     std::unordered_set<string>  visited;
-
+    int i = 0;
     queue.push_back(cube);
     while (!queue.empty())
     {
         Cube current = queue.front();
         queue.pop_front();
-        if (current.is_cross())
-        {
-            cout << "Found cross!" << endl;
-            return;
-        }
-        if (visited.find(current.to_string_forcross()) != visited.end())
+        string str = current.to_string_forcross();
+        if (visited.find(str) != visited.end())
             continue;
-        visited.insert(current.to_string_forcross());
+        visited.insert(str);
         for (char face : Cube::face_names)
         {
             for (int i = 0; i < 3; ++i)
             {
                 Cube next = current;
                 next.rotate(face, i);
+                if (next.is_cross())
+                {
+                    cout << "Found cross!" << endl;
+                    return;
+                }
                 queue.push_back(next);
             }
         }
-        // if (queue.size() % 100 == 0)
-        //     cout << "Queue size: " << queue.size() << endl;
+        if (visited.size() % 100 == 0)
+            cout << "Visited size: " << visited.size() << endl;
     }
 }
 
