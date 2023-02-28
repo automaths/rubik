@@ -139,10 +139,36 @@ public:
     vector<int> get_face(char faceid);
     vector<int> get_facelets();
 
-    void shuffle(int n = 10000);
+    void shuffle(int n = 100000);
     bool is_cross();
     string to_string_forcross(); // fonction pour pouvoir hasher un etat dans la recherche de la premiere step
+    string to_string_2FL(); // fonction pour pouvoir hasher un etat dans la recherche de la deuxieme step
     void find_2FL();
+};
+
+class SearchCube {
+public:
+    Cube cube;
+    vector<string> moves;
+    int distance;
+
+    SearchCube(Cube& cube, vector<string> moves)
+    {
+        this->cube = cube;
+        this->moves = moves;
+        this->distance = 4;
+        for (string edge : Cube::edge_names)
+        {
+            if (cube.edges[edge].orientation == 0 && cube.edges[edge].name == edge)
+                this->distance -= 1;
+        }
+    }
+
+    bool operator<(const SearchCube& other) const
+    {
+        return distance + moves.size() > other.distance + other.moves.size();
+    }
+
 };
 
 #endif
