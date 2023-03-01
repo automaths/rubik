@@ -5,11 +5,12 @@ OBJ_DIR     := 	obj
 SRCS        := 	main.cpp \
 				Cubos.cpp \
 				ascii_rubik.cpp \
+				2FL.cpp \
 
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-CC          := g++ -std=c++14
+CC          := g++ -std=c++14 -fsanitize=address 
 # CPPFLAGS    := -I include
 
 RM          := rm -f
