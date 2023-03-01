@@ -1,60 +1,8 @@
 #include "../Cubos.hpp"
-#include "iostream"
+#include <iostream>
+#include <sstream>
 
 using namespace std;
-
-// {"URF", "UFL", "ULB", "UBR", "DFR", "DLF", "DBL", "DRB"};
-
-void Cube::find_2FL()
-{
-    if (corners["URF"].name != "URF" || corners["URF"].orientation != 0)
-    {
-        for (auto corner : corners)
-        {
-            if (corner.second.name == "URF")
-            {
-                if (corner.first == "URF")
-                    return ;
-                else if (corner.first == "UFL")
-                    rotate('u', 3);
-                else if (corner.first == "ULB")
-                    rotate('u', 2);
-                else if (corner.first == "UBR")
-                    rotate('u', 1);
-                else if (corner.first == "DFR")
-                {
-                    rotate('r', 1);
-                    rotate('u', 1);
-                    rotate('r', 3);
-                    rotate('u', 3);
-                }
-                else if (corner.first == "DLF")
-                {
-                    rotate('l', 3);
-                    rotate('u', 3);
-                    rotate('l', 1);                  
-                }
-                else if (corner.first == "DBL")
-                {
-                    rotate('l', 1);
-                    rotate('u', 1);
-                    rotate('l', 3);  
-                    rotate('l', 1);  
-                }
-                else if (corner.first == "DRB")
-                {
-                    rotate('r', 3);
-                    rotate('u', 3);
-                    rotate('r', 1);  
-                    rotate('u', 2);
-                }
-                return ;
-            }
-        }
-    }
-}
-
-
 
 vector<int> Cube::get_facelets()
 {
@@ -168,6 +116,7 @@ map<char, vector<string> > Cube::face_edges;
 
 map<string, string> Cube::corner_names_after_ymove;
 map<string, string> Cube::edge_names_after_ymove;
+map<string, string> Cube::algo_2FL;
 
 
 void Cube::init_members()
@@ -203,7 +152,6 @@ void Cube::init_members()
 
     // edge pattern : 1 1 1 1 pour faces f, b sinon 0
 
-
     corner_names_after_ymove["UBR"] = "URF";
     corner_names_after_ymove["URF"] = "UFL";
     corner_names_after_ymove["UFL"] = "ULB";
@@ -225,6 +173,17 @@ void Cube::init_members()
     edge_names_after_ymove["FL"] = "BL";
     edge_names_after_ymove["BL"] = "BR";
     edge_names_after_ymove["BR"] = "FR";
+
+    init_2FL();
+}
+
+void Cube::apply_moves(string moves)
+{
+    string parsed;
+    stringstream input_ss(moves);
+
+    while (getline(input_ss, parsed, ' '))
+        apply_move(parsed);
 }
 
 void Cube::apply_move(string move)
@@ -238,6 +197,11 @@ void Cube::apply_move(string move)
             direction = 3;
         else if (move[1] == '2')
             direction = 2;
+    }
+    if (move[0] == 'y') {
+        for (int i = 0; i < direction; i++)
+            y();
+        return;
     }
     rotate(face, direction);
 }
@@ -288,35 +252,31 @@ void Cube::shuffle(int n)
     }
 }
 
-
-Cube Cube::y()
+void Cube::y()
 {
-    Cube res(*this);
     // rotate every thing along y axis
-    res.rotate('u', 1);
-    res.rotate('d', 3);
+    rotate('u', 1);
+    rotate('d', 3);
     vector<string> middle_edges = {"BL", "FL", "FR", "BR"};
-    Edge tmp = res.edges[middle_edges[0]];
-    res.edges[middle_edges[0]] = res.edges[middle_edges[1]];
-    res.edges[middle_edges[1]] = res.edges[middle_edges[2]];
-    res.edges[middle_edges[2]] = res.edges[middle_edges[3]];
-    res.edges[middle_edges[3]] = tmp;
+    Edge tmp = edges[middle_edges[0]];
+    edges[middle_edges[0]] = edges[middle_edges[1]];
+    edges[middle_edges[1]] = edges[middle_edges[2]];
+    edges[middle_edges[2]] = edges[middle_edges[3]];
+    edges[middle_edges[3]] = tmp;
     for (int i = 0; i < 4; i++)
-        res.edges[middle_edges[i]].orientation = 1 - res.edges[middle_edges[i]].orientation;
+        edges[middle_edges[i]].orientation = 1 - edges[middle_edges[i]].orientation;
     // change colors
-    for (auto &corner : res.corners)
+    for (auto &corner : corners)
     {
         corner.second.name = corner_names_after_ymove[corner.second.name];
         // corner.second.orientation = (corner.second.orientation + 1) % 3;
     }
-    for (auto &edge : res.edges)
+    for (auto &edge : edges)
     {
         edge.second.name = edge_names_after_ymove[edge.second.name];
         if (edge.second.name[0] != 'U' && edge.second.name[0] != 'D')
             edge.second.orientation = (edge.second.orientation + 1) % 2;
     }
-
-    return res;
 }
 
 bool Cube::is_cross()
@@ -363,6 +323,8 @@ string Cube::to_string_2FL()
     s += (corners["DFR"].name == "DFR") ? ("C" + to_string(corners["DFR"].orientation)) : "*";
     return s;
 }
+
+
 
 
 vector<int> Cube::get_face(char faceid) // TODO

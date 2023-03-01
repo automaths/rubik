@@ -51,16 +51,18 @@ int main()
     Cube::init_members();
     Cube   rk;
     // print_ascii_rubik(rk);
-    rk.rotate('r', 1);
-    cout << rk.corners["URF"].orientation << endl;
-    cout << rk.to_string_2FL() << endl;
-    print_ascii_rubik(rk);
-    exit(0);
+    // rk.rotate('r', 1);
+    // rk.rotate('u', 1);
+    // rk.rotate('f', 1);
+    // cout << rk.corners["URF"].orientation << endl;
+    // cout << rk.to_string_2FL() << endl;
+    // print_ascii_rubik(rk);
+    // exit(0);
 
+    rk.shuffle();
     astar_for_cross(rk);
+    rk.solve_2FL();
     // rk.find_2FL();
     print_ascii_rubik(rk);
-    Cube rk2 = rk.y();
-    print_ascii_rubik(rk2);
     
 }

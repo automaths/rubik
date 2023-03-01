@@ -120,7 +120,9 @@ static map<char, vector<string> > face_corners;
 static map<char, vector<string> > face_edges;
 static map<string, string> corner_names_after_ymove;
 static map<string, string> edge_names_after_ymove;
+static map<string, string> algo_2FL;
 static void init_members();
+static void init_2FL();
 
 public:
     map<string, Corner> corners;
@@ -135,7 +137,8 @@ public:
     }
     void rotate(char faceid, int direction = 1);
     void apply_move(string move);
-    Cube y();
+    void apply_moves(string moves);
+    void y();
     vector<int> get_face(char faceid);
     vector<int> get_facelets();
 
@@ -143,7 +146,8 @@ public:
     bool is_cross();
     string to_string_forcross(); // fonction pour pouvoir hasher un etat dans la recherche de la premiere step
     string to_string_2FL(); // fonction pour pouvoir hasher un etat dans la recherche de la deuxieme step
-    void find_2FL();
+    void one_corner_2FL();
+    void solve_2FL();
 };
 
 class SearchCube {
