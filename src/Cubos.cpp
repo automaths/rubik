@@ -3,52 +3,71 @@
 
 using namespace std;
 
-// {"URF", "UFL", "ULB", "UBR", "DFR", "DLF", "DBL", "DRB"};
-
 void Cube::find_2FL()
 {
-    if (corners["URF"].name != "URF" || corners["URF"].orientation != 0)
+    for (auto corner : corners)
     {
-        for (auto corner : corners)
+        if (corner.second.name == "DFR")
         {
-            if (corner.second.name == "URF")
-            {
-                if (corner.first == "URF")
-                    return ;
-                else if (corner.first == "UFL")
-                    rotate('u', 3);
-                else if (corner.first == "ULB")
-                    rotate('u', 2);
-                else if (corner.first == "UBR")
-                    rotate('u', 1);
-                else if (corner.first == "DFR")
-                {
-                    rotate('r', 1);
-                    rotate('u', 1);
-                    rotate('r', 3);
-                    rotate('u', 3);
-                }
-                else if (corner.first == "DLF")
-                {
-                    rotate('l', 3);
-                    rotate('u', 3);
-                    rotate('l', 1);                  
-                }
-                else if (corner.first == "DBL")
-                {
-                    rotate('l', 1);
-                    rotate('u', 1);
-                    rotate('l', 3);  
-                    rotate('l', 1);  
-                }
-                else if (corner.first == "DRB")
-                {
-                    rotate('r', 3);
-                    rotate('u', 3);
-                    rotate('r', 1);  
-                    rotate('u', 2);
-                }
+            if (corner.first == "DFR" || corner.first == "URF")
                 return ;
+            else if (corner.first == "UFL")
+                rotate('u', 3);
+            else if (corner.first == "ULB")
+                rotate('u', 2);
+            else if (corner.first == "UBR")
+                rotate('u', 1);
+            else if (corner.first == "DFR")
+            {
+                rotate('r', 1);
+                rotate('u', 1);
+                rotate('r', 3);
+                rotate('u', 3);
+            }
+            else if (corner.first == "DLF")
+            {
+                rotate('l', 3);
+                rotate('u', 3);
+                rotate('l', 1);                  
+            }
+            else if (corner.first == "DBL")
+            {
+                rotate('l', 1);
+                rotate('u', 1);
+                rotate('l', 3);  
+                rotate('l', 1);  
+            }
+            else if (corner.first == "DRB")
+            {
+                rotate('r', 3);
+                rotate('u', 3);
+                rotate('r', 1);  
+                rotate('u', 2);
+            }
+            return ;
+        }
+    }
+    for (auto edge : edges)
+    {
+        if (edge.second.name == "FR")
+        {
+            if (edge.first == "FL")
+            {
+                rotate('l', 3);
+                rotate('u', 3);  
+                rotate('l', 1);
+            }
+            else if (edge.first == "BR")
+            {
+                rotate('r', 3);
+                rotate('u', 3);  
+                rotate('r', 1);              
+            }
+            else if (edge.first == "BL")
+            {
+                rotate('l', 1);
+                rotate('u', 1);  
+                rotate('l', 3);              
             }
         }
     }
