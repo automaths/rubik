@@ -58,10 +58,12 @@ int main()
     // cout << rk.to_string_2FL() << endl;
     // print_ascii_rubik(rk);
     // exit(0);
-
-    rk.shuffle();
-    astar_for_cross(rk);
-    rk.solve_2FL();
+    for (int i = 0; i < 1000; ++i)
+    {
+        rk.shuffle();
+        astar_for_cross(rk);
+        rk.solve_2FL_v2();
+    }
     // rk.find_2FL();
     print_ascii_rubik(rk);
     

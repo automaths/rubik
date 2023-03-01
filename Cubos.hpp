@@ -148,6 +148,7 @@ public:
     string to_string_2FL(); // fonction pour pouvoir hasher un etat dans la recherche de la deuxieme step
     void one_corner_2FL();
     void solve_2FL();
+    void solve_2FL_v2();
 };
 
 class SearchCube {
@@ -160,11 +161,11 @@ public:
     {
         this->cube = cube;
         this->moves = moves;
-        this->distance = 4;
+        this->distance = 8;
         for (string edge : Cube::edge_names)
         {
             if (cube.edges[edge].orientation == 0 && cube.edges[edge].name == edge)
-                this->distance -= 1;
+                this->distance -= 2;
         }
     }
 
