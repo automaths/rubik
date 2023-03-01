@@ -109,22 +109,22 @@ void Cube::init_2FL()
     // F2L Cas 1
     algo_2FL["*E1**C1**"] = "U' R U' R' U y' R' U' R";
     algo_2FL["E0***C2**"] = "U' R U R' U R U R'";
-    algo_2FL["***E1C1**"] = "U' R U2' R' U y' R' U' R";
-    algo_2FL["**E0*C2**"] = "R' U2' R2 U R2' U R";
+    algo_2FL["***E1C1**"] = "U' R U2 R' U y' R' U' R";
+    algo_2FL["**E0*C2**"] = "R' U2 R2 U R2' U R";
     algo_2FL["**E1*C1**"] = "y' U R' U R U' R' U' R";
     algo_2FL["***E0C2**"] = "U' R U' R' U R U R'";    
     // F2L Cas 2
     algo_2FL["*E0**C1**"] = "U' R U R' U2 R U' R'";
-    algo_2FL["E1***C2**"] = "y' U R' U' R U2' R' U R";
-    algo_2FL["E0***C1**"] = "U' R U2' R' U2 R U' R'";
-    algo_2FL["*E1**C2**"] = "y' U R' U2 R U2' R' U R";
+    algo_2FL["E1***C2**"] = "y' U R' U' R U2 R' U R";
+    algo_2FL["E0***C1**"] = "U' R U2 R' U2 R U' R'";
+    algo_2FL["*E1**C2**"] = "y' U R' U2 R U2 R' U R";
     // F2L Cas 3
     algo_2FL["*E0**C0**"] = "U R U2 R' U R U' R'";
     algo_2FL["E1***C0**"] = "y' U' R' U2 R U' R' U R";
     algo_2FL["E0***C0**"] = "U2 R U R' U R U' R'";
     algo_2FL["*E1**C0**"] = "F' L' U2 L F";
     // Coin et arrete non connetes correctement
-    algo_2FL["**E0*C1**"] = "	y' R' U R U2' y R U R'";
+    algo_2FL["**E0*C1**"] = "y' R' U R U2 y R U R'";
     algo_2FL["***E1C2**"] = "R U' R' U2 F' U' F";
     algo_2FL["***E0C0**"] = "R U2 R' U' R U R'";
     algo_2FL["**E1*C0**"] = "y' R' U2 R U R' U' R";
@@ -141,14 +141,14 @@ void Cube::init_2FL()
     algo_2FL["****C0E1*"] = "R U' R' U y' R' U R";
     algo_2FL["****C0E0*"] = "U R U' R' U R U' R' U R U' R'";
     algo_2FL["****C1E0*"] = "U' R U' R' U2 R U' R'";
-    algo_2FL["****C2E0*"] = "U' R U2' R' U R U R'";
+    algo_2FL["****C2E0*"] = "U' R U2 R' U R U R'";
     algo_2FL["****C1E1*"] = "U2 R U' R' U' F' U' F";
     algo_2FL["****C2E1*"] = "U F' U' F U' R U R'";
     // Coin et arrete en place
-    algo_2FL["*****E0C0"] = "";
-    algo_2FL["*****E1C0"] = "R U' R' U y' R' U2 R U2' R' U R";
     algo_2FL["*****E0C2"] = "R U R' U' R U2 R' U' R U R'";
-    algo_2FL["*****E0C1"] = "R U R' U2' R U' R' U R U R'";
+    algo_2FL["*****E0C0"] = "";
+    algo_2FL["*****E1C0"] = "R U' R' U y' R' U2 R U2 R' U R";
+    algo_2FL["*****E0C1"] = "R U R' U2 R U' R' U R U R'";
     algo_2FL["*****E1C2"] = "F' U F U2 R U R' U R U' R'";
     algo_2FL["*****E1C1"] = "R U R' U' R U' R' U2 F' U' F";
 }
