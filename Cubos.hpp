@@ -121,8 +121,10 @@ static map<char, vector<string> > face_edges;
 static map<string, string> corner_names_after_ymove;
 static map<string, string> edge_names_after_ymove;
 static map<string, string> algo_2FL;
+static map<string, string> algo_OLL;
 static void init_members();
 static void init_2FL();
+static void init_OLL();
 
 public:
     map<string, Corner> corners;
@@ -146,6 +148,7 @@ public:
     bool is_cross();
     string to_string_forcross(); // fonction pour pouvoir hasher un etat dans la recherche de la premiere step
     string to_string_2FL(); // fonction pour pouvoir hasher un etat dans la recherche de la deuxieme step
+    string to_string_OLL(); // fonction pour pouvoir hasher un etat dans la recherche de la troisieme step
     void one_corner_2FL();
     void solve_2FL();
 };

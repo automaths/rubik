@@ -75,36 +75,16 @@ void Cube::one_corner_2FL()
             }
         }
     }
-    cout << "the string is : " << to_string_2FL() << " and the algo is " << algo_2FL[to_string_2FL()] << endl;
+    // cout << "the string is : " << to_string_2FL() << " and the algo is " << algo_2FL[to_string_2FL()] << endl;
     apply_moves(algo_2FL[to_string_2FL()]);
-    cout << "the result is: " << to_string_2FL() << endl;
+    // cout << "the result is: " << to_string_2FL() << endl;
 }
-
-// par example : le tout premier algo de speedcubingtips insertion simple sappelle
-// "***E0C1**"
-
-// string Cube::to_string_2FL()
-// {
-//     string s = "";
-//     s += (edges["UL"].name == "FR") ? ("E" + to_string(edges["UL"].orientation)) : "*";
-//     s += (edges["UB"].name == "FR") ? ("E" + to_string(edges["UB"].orientation)) : "*";
-//     s += (edges["UF"].name == "FR") ? ("E" + to_string(edges["UF"].orientation)) : "*";
-//     s += (edges["UR"].name == "FR") ? ("E" + to_string(edges["UR"].orientation)) : "*";
-
-//     s += (corners["URF"].name == "DFR") ? ("C" + to_string(corners["URF"].orientation)) : "*";
-    
-//     s += (edges["FR"].name == "FR") ? ("E" + to_string(edges["FR"].orientation)) : "*";
-
-//     s += (corners["DFR"].name == "DFR") ? ("C" + to_string(corners["DFR"].orientation)) : "*";
-//     return s;
-// }
 
 void Cube::init_2FL()
 {
     // Insertions simples
     algo_2FL["***E0C1**"] = "U R U' R'";
-    algo_2FL["**E1*C2**"] = "y' U' R' U R y"; // 
-
+    algo_2FL["**E1*C2**"] = "y' U' R' U R y";
     algo_2FL["E1***C1**"] = "y' R' U' R y";
     algo_2FL["*E0**C2**"] = "R U R'";
     // F2L Cas 1
