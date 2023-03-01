@@ -182,13 +182,15 @@ void Cube::apply_moves(string moves)
     string parsed;
     stringstream input_ss(moves);
 
+    if (moves == "")
+        return;
     while (getline(input_ss, parsed, ' '))
         apply_move(parsed);
 }
 
 void Cube::apply_move(string move)
 {
-    char face = move[0];
+    char face = move[0] + 32;
     int direction = 1;
     
     if (move.size() > 1)

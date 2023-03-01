@@ -11,11 +11,14 @@ void Cube::solve_2FL()
 
 void Cube::one_corner_2FL()
 {
+    int tmp = 0;
     for (auto corner : corners)
     {
         if (corner.second.name == "DFR")
         {
-            if (corner.first == "DFR" || corner.first == "URF")
+            if (corner.first == "DFR")
+                ++tmp;
+            else if (corner.first == "URF")
                 ;
             else if (corner.first == "UFL")
                 rotate('u', 3);
@@ -27,13 +30,13 @@ void Cube::one_corner_2FL()
             {
                 rotate('l', 3);
                 rotate('u', 3);
-                rotate('l', 1);                  
+                rotate('l', 1);               
             }
             else if (corner.first == "DBL")
             {
                 rotate('l', 1);
                 rotate('u', 1);
-                rotate('l', 3);   
+                rotate('l', 3);
                 rotate('u', 1);
             }
             else if (corner.first == "DRB")
@@ -52,24 +55,29 @@ void Cube::one_corner_2FL()
             if (edge.first == "FL")
             {
                 rotate('l', 3);
-                rotate('u', 3);  
+                rotate('u', 3);
                 rotate('l', 1);
+                if (!tmp)
+                    rotate('u', 1);  
             }
             else if (edge.first == "BR")
             {
                 rotate('r', 3);
-                rotate('u', 3);  
-                rotate('r', 1);              
+                rotate('u', 3);
+                rotate('r', 1);            
             }
             else if (edge.first == "BL")
             {
                 rotate('l', 1);
                 rotate('u', 1);  
                 rotate('l', 3);              
+                rotate('u', 2);  
             }
         }
     }
+    cout << "the string is : " << to_string_2FL() << " and the algo is " << algo_2FL[to_string_2FL()] << endl;
     apply_moves(algo_2FL[to_string_2FL()]);
+    cout << "the result is: " << to_string_2FL() << endl;
 }
 
 // par example : le tout premier algo de speedcubingtips insertion simple sappelle
@@ -116,7 +124,7 @@ void Cube::init_2FL()
     algo_2FL["E0***C0**"] = "U2 R U R' U R U' R'";
     algo_2FL["*E1**C0**"] = "F' L' U2 L F";
     // Coin et arrete non connetes correctement
-    algo_2FL["**E0*C1**"] = "y L' U L U2 y R U R'";
+    algo_2FL["**E0*C1**"] = "	y' R' U R U2' y R U R'";
     algo_2FL["***E1C2**"] = "R U' R' U2 F' U' F";
     algo_2FL["***E0C0**"] = "R U2 R' U' R U R'";
     algo_2FL["**E1*C0**"] = "y' R' U2 R U R' U' R";
