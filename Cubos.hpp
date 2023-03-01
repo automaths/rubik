@@ -61,12 +61,12 @@
 #define B8 52
 #define B9 53
 
-using namespace std;
-
 #include <string>
 #include <vector>
 #include <map>
 #include <iostream>
+
+using namespace std;
 
 class Cube;
 int print_ascii_rubik(Cube &rk);
@@ -116,11 +116,10 @@ public:
 const static string corner_names[8];
 const static string edge_names[12];
 const static char face_names[6];
-// const static string face_corners[4][6];
-// const static string face_edges[4][6];
-
 static map<char, vector<string> > face_corners;
 static map<char, vector<string> > face_edges;
+static map<string, string> corner_names_after_ymove;
+static map<string, string> edge_names_after_ymove;
 static void init_members();
 
 public:
@@ -136,12 +135,40 @@ public:
     }
     void rotate(char faceid, int direction = 1);
     void apply_move(string move);
+    Cube y();
     vector<int> get_face(char faceid);
     vector<int> get_facelets();
 
-    void shuffle(int n = 10000);
+    void shuffle(int n = 100000);
     bool is_cross();
     string to_string_forcross(); // fonction pour pouvoir hasher un etat dans la recherche de la premiere step
+    string to_string_2FL(); // fonction pour pouvoir hasher un etat dans la recherche de la deuxieme step
+    void find_2FL();
+};
+
+class SearchCube {
+public:
+    Cube cube;
+    vector<string> moves;
+    int distance;
+
+    SearchCube(Cube& cube, vector<string> moves)
+    {
+        this->cube = cube;
+        this->moves = moves;
+        this->distance = 4;
+        for (string edge : Cube::edge_names)
+        {
+            if (cube.edges[edge].orientation == 0 && cube.edges[edge].name == edge)
+                this->distance -= 1;
+        }
+    }
+
+    bool operator<(const SearchCube& other) const
+    {
+        return distance + moves.size() > other.distance + other.moves.size();
+    }
+
 };
 
 #endif
