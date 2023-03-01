@@ -166,10 +166,6 @@ const char Cube::face_names[6] = {'u', 'r', 'f', 'd', 'l', 'b'};
 map<char, vector<string> > Cube::face_corners;
 map<char, vector<string> > Cube::face_edges;
 
-map<string, string> Cube::corner_names_after_ymove;
-map<string, string> Cube::edge_names_after_ymove;
-
-
 void Cube::init_members()
 {
 
@@ -203,28 +199,6 @@ void Cube::init_members()
 
     // edge pattern : 1 1 1 1 pour faces f, b sinon 0
 
-
-    corner_names_after_ymove["UBR"] = "URF";
-    corner_names_after_ymove["URF"] = "UFL";
-    corner_names_after_ymove["UFL"] = "ULB";
-    corner_names_after_ymove["ULB"] = "UBR";
-    corner_names_after_ymove["DRB"] = "DFR";
-    corner_names_after_ymove["DFR"] = "DLF";
-    corner_names_after_ymove["DLF"] = "DBL";
-    corner_names_after_ymove["DBL"] = "DRB";
-
-    edge_names_after_ymove["UR"] = "UF";
-    edge_names_after_ymove["UF"] = "UL";
-    edge_names_after_ymove["UL"] = "UB";
-    edge_names_after_ymove["UB"] = "UR";
-    edge_names_after_ymove["DR"] = "DF";
-    edge_names_after_ymove["DF"] = "DL";
-    edge_names_after_ymove["DL"] = "DB";
-    edge_names_after_ymove["DB"] = "DR";
-    edge_names_after_ymove["FR"] = "FL";
-    edge_names_after_ymove["FL"] = "BL";
-    edge_names_after_ymove["BL"] = "BR";
-    edge_names_after_ymove["BR"] = "FR";
 }
 
 void Cube::apply_move(string move)
@@ -289,46 +263,16 @@ void Cube::shuffle(int n)
 }
 
 
-Cube Cube::y()
-{
-    Cube res(*this);
-    // rotate every thing along y axis
-    res.rotate('u', 1);
-    res.rotate('d', 3);
-    vector<string> middle_edges = {"BL", "FL", "FR", "BR"};
-    Edge tmp = res.edges[middle_edges[0]];
-    res.edges[middle_edges[0]] = res.edges[middle_edges[1]];
-    res.edges[middle_edges[1]] = res.edges[middle_edges[2]];
-    res.edges[middle_edges[2]] = res.edges[middle_edges[3]];
-    res.edges[middle_edges[3]] = tmp;
-    for (int i = 0; i < 4; i++)
-        res.edges[middle_edges[i]].orientation = 1 - res.edges[middle_edges[i]].orientation;
-    // change colors
-    for (auto &corner : res.corners)
-    {
-        corner.second.name = corner_names_after_ymove[corner.second.name];
-        // corner.second.orientation = (corner.second.orientation + 1) % 3;
-    }
-    for (auto &edge : res.edges)
-    {
-        edge.second.name = edge_names_after_ymove[edge.second.name];
-        if (edge.second.name[0] != 'U' && edge.second.name[0] != 'D')
-            edge.second.orientation = (edge.second.orientation + 1) % 2;
-    }
-
-    return res;
-}
-
 bool Cube::is_cross()
 {
-    if (edges["DF"].orientation != 0
-     || edges["DF"].name != "DF"
-     || edges["DR"].orientation != 0
-     || edges["DR"].name != "DR"
-     || edges["DB"].orientation != 0
-     || edges["DB"].name != "DB"
-     || edges["DL"].orientation != 0
-     || edges["DL"].name != "DL")
+    if (edges["UF"].orientation != 0
+     || edges["UF"].name != "UF"
+     || edges["UR"].orientation != 0
+     || edges["UR"].name != "UR"
+     || edges["UB"].orientation != 0
+     || edges["UB"].name != "UB"
+     || edges["UL"].orientation != 0
+     || edges["UL"].name != "UL")
         return false;
     return true;
 }
@@ -338,29 +282,11 @@ string Cube::to_string_forcross()
     string s = "";
     for (auto edge : edges)
     {
-        if (edge.second.name[0] == 'D')
+        if (edge.second.name[0] == 'U')
             s += edge.second.name + to_string(edge.second.orientation);
         else
             s += "*";
     }
-    return s;
-}
-
-// par example : le tout premier algo de speedcubingtips insertion simple sappelle
-// "***E0C1**"
-string Cube::to_string_2FL()
-{
-    string s = "";
-    s += (edges["UL"].name == "FR") ? ("E" + to_string(edges["UL"].orientation)) : "*";
-    s += (edges["UB"].name == "FR") ? ("E" + to_string(edges["UB"].orientation)) : "*";
-    s += (edges["UF"].name == "FR") ? ("E" + to_string(edges["UF"].orientation)) : "*";
-    s += (edges["UR"].name == "FR") ? ("E" + to_string(edges["UR"].orientation)) : "*";
-
-    s += (corners["URF"].name == "DFR") ? ("C" + to_string(corners["URF"].orientation)) : "*";
-    
-    s += (edges["FR"].name == "FR") ? ("E" + to_string(edges["FR"].orientation)) : "*";
-
-    s += (corners["DFR"].name == "DFR") ? ("C" + to_string(corners["DFR"].orientation)) : "*";
     return s;
 }
 
