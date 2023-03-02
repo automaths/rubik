@@ -48,6 +48,8 @@ void Cube::solve_2FL()
     }
 }
 
+// 4! * 
+
 void Cube::one_corner_2FL()
 {
     int tmp = 0;

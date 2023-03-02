@@ -5,6 +5,14 @@ int main()
 {
     Cube::init_members();
     Cube   rk;
+
+    algo_checker(&Cube::to_string_2FL, Cube::algo_2FL);
+    cout << "2FL algos checked." << endl;
+    algo_checker(&Cube::to_string_OLL, Cube::algo_OLL);
+    cout << "OLL algos checked." << endl;
+    algo_checker(&Cube::to_string_PLL, Cube::algo_PLL);
+    cout << "PLL algos checked." << endl;
+
     // print_ascii_rubik(rk);
     // rk.rotate('r', 1);
     // rk.rotate('u', 1);
