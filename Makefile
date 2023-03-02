@@ -5,6 +5,7 @@ OBJ_DIR     := 	obj
 SRCS        := 	main.cpp \
 				Cubos.cpp \
 				ascii_rubik.cpp \
+				cross.cpp \
 				2FL.cpp \
 				OLL.cpp \
 				PLL.cpp \

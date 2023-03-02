@@ -70,6 +70,7 @@ using namespace std;
 
 class Cube;
 int print_ascii_rubik(Cube &rk);
+vector<string> astar_for_cross(Cube& cube);
 
 class Corner {
 public:
@@ -155,6 +156,8 @@ public:
     void one_corner_2FL();
     void solve_2FL();
     void solve_2FL_v2();
+    void solve_OLL();
+    void solve_PLL();
 };
 
 class SearchCube {

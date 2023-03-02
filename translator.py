@@ -23,24 +23,36 @@ def clean_w(moves):
 
 def translate(moves):
     moves = moves.split()
+    # print(moves)
     moves = clean_w(moves)
+    # print(moves)
     scopes = []
     res = []
     for move in moves:
         if move[0] in 'xyz':
-            scopes.append(move[0])
+            scopes.append(move)
         else:
             for scope in scopes[::-1]:
                 dir = 1 if len(scope) == 1 else 3
-                if scope == 'x' and move[0] in xscope:
+                if scope[0] == 'x' and move[0] in xscope:
                     move = xscope[(xscope.index(move[0]) + dir) % 4] + move[1:]
-                elif scope == 'y' and move[0] in yscope:
+                elif scope[0] == 'y' and move[0] in yscope:
                     move = yscope[(yscope.index(move[0]) + dir) % 4] + move[1:]
-                elif scope == 'z' and move[0] in zscope:
+                elif scope[0] == 'z' and move[0] in zscope:
                     move = zscope[(zscope.index(move[0]) + dir) % 4] + move[1:]
             res.append(move)
     return " ".join(res)
 
 
-print(translate("Rw U R' U' Rw' F R F'"))
+print(translate("Rw U R' U' Rw' R U R U' R'"))
+
+file = open("src/original_PLL.cpp", "r")
+res = open("src/PLL.cpp", "w")
+for line in file:
+    i = line.find("\"] = \"")
+    if i != -1:
+        moves = line[i + 6:-3]
+        moves = translate(moves)
+        line = line[:i + 6] + moves + line[-3:]
+    res.write(line)
 
