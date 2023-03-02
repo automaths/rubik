@@ -6,6 +6,8 @@ SRCS        := 	main.cpp \
 				Cubos.cpp \
 				ascii_rubik.cpp \
 				2FL.cpp \
+				OLL.cpp \
+				PLL.cpp \
 
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
