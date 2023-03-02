@@ -63,6 +63,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 #include <map>
 #include <iostream>
 
@@ -71,6 +72,8 @@ using namespace std;
 class Cube;
 int print_ascii_rubik(Cube &rk);
 vector<string> astar_for_cross(Cube& cube);
+bool algo_checker(std::string (Cube::*tostr)(), map<string, string> algos);
+
 
 class Corner {
 public:
@@ -128,6 +131,7 @@ static void init_members();
 static void init_2FL();
 static void init_OLL();
 static void init_PLL();
+static string res_moves;
 
 public:
     map<string, Corner> corners;

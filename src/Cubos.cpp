@@ -16,6 +16,8 @@ map<string, string> Cube::edge_names_after_ymove;
 map<string, string> Cube::algo_2FL;
 map<string, string> Cube::algo_OLL;
 map<string, string> Cube::algo_PLL;
+string Cube::res_moves;
+
 
 void Cube::init_members()
 {
@@ -94,6 +96,12 @@ void Cube::apply_move(string move)
 void Cube::rotate(char faceid, int direction)
 {
     direction = (direction + 4) % 4;
+
+    if (!face_corners.count(faceid) || !face_edges.count(faceid))
+    {
+        cout << "Invalid faceid: " << faceid << endl;
+        exit(1);
+    }
 
     vector<string> &rot_corners = Cube::face_corners[faceid];
     vector<string> &rot_edges = Cube::face_edges[faceid];

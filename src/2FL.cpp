@@ -13,6 +13,8 @@ void Cube::solve_2FL_v2()
             else
                 impossible++;
             y();
+            Cube::res_moves += "y ";
+
         }
         if (good == 4)  {
             cout << "2FL OK" << endl;
@@ -20,8 +22,10 @@ void Cube::solve_2FL_v2()
         }
         if (impossible + good == 4) {
             cout << "impossible cases: "  << good << ". I need a bit of magic !" << endl;
-            while (algo_2FL.find(to_string_2FL()) != algo_2FL.end())
+            while (algo_2FL.find(to_string_2FL()) != algo_2FL.end()){
                 y();
+                Cube::res_moves += "y ";
+            }
             one_corner_2FL();
         }
         else {
@@ -33,12 +37,14 @@ void Cube::solve_2FL_v2()
             }
             else if (cas != "*****E0C0")
                 cout << "OK" << endl;
+            Cube::res_moves += algo_2FL[to_string_2FL()] + "y ";
             y();
         }
     }
+    Cube::res_moves += "| ";
 }
 
-
+// deprecated
 void Cube::solve_2FL()
 {
     for (int i = 0; i < 4; i++)
@@ -59,17 +65,24 @@ void Cube::one_corner_2FL()
                 ++tmp;
             else if (corner.first == "URF")
                 ;
-            else if (corner.first == "UFL")
+            else if (corner.first == "UFL") {
                 rotate('u', 3);
-            else if (corner.first == "ULB")
+                Cube::res_moves += "U' ";
+            }
+            else if (corner.first == "ULB") {
                 rotate('u', 2);
-            else if (corner.first == "UBR")
+                Cube::res_moves += "U2 ";
+            }
+            else if (corner.first == "UBR") {
                 rotate('u', 1);
+                Cube::res_moves += "U ";
+            }
             else if (corner.first == "DLF")
             {
                 rotate('l', 3);
                 rotate('u', 3);
-                rotate('l', 1);               
+                rotate('l', 1);
+                Cube::res_moves += "L' U' L ";
             }
             else if (corner.first == "DBL")
             {
@@ -77,6 +90,7 @@ void Cube::one_corner_2FL()
                 rotate('u', 1);
                 rotate('l', 3);
                 rotate('u', 1);
+                Cube::res_moves += "L U L' U ";
             }
             else if (corner.first == "DRB")
             {
@@ -84,6 +98,7 @@ void Cube::one_corner_2FL()
                 rotate('u', 3);
                 rotate('r', 1);  
                 rotate('u', 2);
+                Cube::res_moves += "R' U' R U2 ";
             }
         }
     }
@@ -96,14 +111,18 @@ void Cube::one_corner_2FL()
                 rotate('l', 3);
                 rotate('u', 3);
                 rotate('l', 1);
-                if (!tmp)
-                    rotate('u', 1);  
+                Cube::res_moves += "L' U' L ";
+                if (!tmp)   {
+                    rotate('u', 1);
+                    Cube::res_moves += "U ";
+                }
             }
             else if (edge.first == "BR")
             {
                 rotate('r', 3);
                 rotate('u', 3);
-                rotate('r', 1);            
+                rotate('r', 1);
+                Cube::res_moves += "R' U' R ";
             }
             else if (edge.first == "BL")
             {
@@ -111,6 +130,7 @@ void Cube::one_corner_2FL()
                 rotate('u', 1);  
                 rotate('l', 3);              
                 rotate('u', 2);  
+                Cube::res_moves += "L U L' U2 ";
             }
         }
     }
@@ -121,7 +141,13 @@ void Cube::one_corner_2FL()
             rotate('u', 1);
             i++;
         }
-        if (i == 8)
+        if (i == 1)
+            Cube::res_moves += "U ";
+        else if (i == 2)
+            Cube::res_moves += "U2 ";
+        else if (i == 3)
+            Cube::res_moves += "U' ";
+        else if (i == 8)
         {
             cout << to_string_2FL() << "WATCHOUT FATAL ERROR" << endl;
             exit(1);
@@ -133,6 +159,7 @@ void Cube::one_corner_2FL()
         exit(1);
     }
     apply_moves(algo_2FL[to_string_2FL()]);
+    Cube::res_moves += algo_2FL[to_string_2FL()] + " ";
     // cout << "the result is: " << to_string_2FL() << endl;
 }
 
