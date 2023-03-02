@@ -13,6 +13,7 @@ void Cube::solve_PLL()
             }
             else
                 cout << "PLL OK" << endl;
+            Cube::res_moves += algo_PLL[to_string_PLL()] + " | ";
             return;
         }
         y();
