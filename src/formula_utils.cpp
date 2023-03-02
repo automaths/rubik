@@ -32,9 +32,17 @@ bool algo_checker(std::string (Cube::*tostr)(), map<string, string> algos)
 
         Cube cube;
         cube.apply_moves(formula_reverser(algo.second));
-        if ((cube.*tostr)() != algo.first)
+        bool good = false;
+        for (int i = 0; i < 4; ++i)
+        {
+            cube.rotate('u', 1);
+            if ((cube.*tostr)() == algo.first)
+                good = true;
+        }
+        if (!good)
         {
             cout << "ERROR: " << algo.first << endl;
+            print_ascii_rubik(cube);
             return false;
         }
     }

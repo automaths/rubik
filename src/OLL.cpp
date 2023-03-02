@@ -15,6 +15,7 @@ void Cube::solve_OLL()
             Cube::res_moves += algo_OLL[to_string_OLL()] + " | ";
             return;
         }
+        cout << "the algo tried is: " << to_string_OLL() << endl;
         y();
         Cube::res_moves += "y ";
     }
@@ -31,6 +32,29 @@ string Cube::to_string_OLL()
     return s;
 }
 
+/*
+the algo tried is: 01021112
+the algo tried is: 12010211
+the algo tried is: 11120102
+the algo tried is: 02111201
+
+the algo tried is: 02021111
+the algo tried is: 11020211
+the algo tried is: 11110202
+the algo tried is: 02111102
+
+the algo tried is: 00021110
+the algo tried is: 10000211
+the algo tried is: 11100002
+the algo tried is: 02111000
+
+the algo tried is: 11010110
+the algo tried is: 10110101
+the algo tried is: 01101101
+the algo tried is: 01011011
+
+*/
+
 void Cube::init_OLL()
 {
     // Toutes les arêtes orientées correctement
@@ -43,7 +67,7 @@ void Cube::init_OLL()
     algo_OLL["00000102"] = "R2 D R' U2 R D' R' U2 R'";
     algo_OLL["00000000"] = "";
     // Tous les coins orientés correctement
-    algo_OLL["00001010"] = "M U M' U2 M U M'";
+    algo_OLL["00001010"] = "F R U R' U' F2 L' U' L U F";
     algo_OLL["00100010"] = "R U R' U' L R' F R F' L'";
     // En forme de "P"
     algo_OLL["12100001"] = "B U L U' L' B'";
@@ -58,8 +82,8 @@ void Cube::init_OLL()
     algo_OLL["11110001"] = "L' B2 R B R' B L";
     // En forme de "L"
     algo_OLL["20211110"] = "F R U R' U' R U R' U' F'";
-    algo_OLL["11010212"] = "F' L' U' L U L' U' L U F";
-    algo_OLL["11010212"] = "B' R' F R' F' R F R' F' R2 B";
+    algo_OLL["11010212"] = "F' L' U' L U L' U' L U F";//
+    algo_OLL["11010212"] = "B' R' F R' F' R F R' F' R2 B";//
     algo_OLL["02011211"] = "L F R' F R F' R' F R F2 L'";
     algo_OLL["12020111"] = "R' F R' F' R2 U2 B' R B R'";
     algo_OLL["01011212"] = "R' F R2 B' R2' F' R2 B R'";
@@ -70,9 +94,9 @@ void Cube::init_OLL()
     algo_OLL["00011012"] = "F R' F' R U R U' R'";
     // De forme bizarre (Awkward Shapes)
     algo_OLL["10100201"] = "R2 U R' B' R U' R2 U R B R'";
-    algo_OLL["02001012"] = "R U R' U' R U' R' F' U' F R U R'";
+    algo_OLL["02001012"] = "R U R' U' R U' R' F' U' F R U R'";//
     algo_OLL["02011010"] = "R U R' U R U2 R' F R U R' U' F'";
-    algo_OLL["02001012"] = "R' U2 R U R' U R R B U B' U' R'";
+    algo_OLL["02001012"] = "R' U2 R U R' U R R B U B' U' R'";//
     // En forme d'éclair (Lightning Bolts)
     algo_OLL["02021110"] = "L F R' F R F2 L'";
     algo_OLL["00111202"] = "L' B' R B' R' B2 L";
@@ -100,9 +124,9 @@ void Cube::init_OLL()
     algo_OLL["12111211"] = "R U2 R' R' F R F' U2 R' F R F'";
     algo_OLL["12121111"] = "F R U R' U' F' B U L U' L' B'";
     algo_OLL["11111011"] = "B U L U' L' B' U' F R U R' U' F'";
-    algo_OLL["10101211"] = "B U L U' L' B' U [F R U R' U' F'";
+    algo_OLL["10101211"] = "B U L U' L' B' U [F R U R' U' F'";//
     algo_OLL["12121010"] = "F R U R' U F' U2 F' L F L'";
-    algo_OLL["10101211"] = "L' B2 R B R' B L2 D2 R' D' R D' L";
+    algo_OLL["10101211"] = "L' B2 R B R' B L2 D2 R' D' R D' L";//
     algo_OLL["10121011"] = "R U R' U R' F R F' U2 R' F R F'";
     algo_OLL["10101010"] = "L' R B R B R' B' L2 R2' D R D' L'";
 }
