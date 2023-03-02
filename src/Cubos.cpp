@@ -4,89 +4,6 @@
 
 using namespace std;
 
-vector<int> Cube::get_facelets()
-{
-    vector<int> face(54);
-    string str;
-
-    face[U5] = 'U';
-    face[R5] = 'R';
-    face[F5] = 'F';
-    face[D5] = 'D';
-    face[L5] = 'L';
-    face[B5] = 'B';
-
-    face[U9] = corners["URF"].name[(0 + corners["URF"].orientation)];
-    face[R1] = corners["URF"].name[(1 + corners["URF"].orientation) % 3];
-    face[F3] = corners["URF"].name[(2 + corners["URF"].orientation) % 3];
-
-    face[U7] = corners["UFL"].name[(0 + corners["UFL"].orientation)];
-    face[F1] = corners["UFL"].name[(1 + corners["UFL"].orientation) % 3];
-    face[L3] = corners["UFL"].name[(2 + corners["UFL"].orientation) % 3];
-
-    face[U1] = corners["ULB"].name[(0 + corners["ULB"].orientation)];
-    face[L1] = corners["ULB"].name[(1 + corners["ULB"].orientation) % 3];
-    face[B3] = corners["ULB"].name[(2 + corners["ULB"].orientation) % 3];
-
-    face[U3] = corners["UBR"].name[(0 + corners["UBR"].orientation)];
-    face[B1] = corners["UBR"].name[(1 + corners["UBR"].orientation) % 3];
-    face[R3] = corners["UBR"].name[(2 + corners["UBR"].orientation) % 3];
-
-    face[D3] = corners["DFR"].name[(0 + corners["DFR"].orientation)];
-    face[F9] = corners["DFR"].name[(1 + corners["DFR"].orientation) % 3];
-    face[R7] = corners["DFR"].name[(2 + corners["DFR"].orientation) % 3];
-
-    face[D1] = corners["DLF"].name[(0 + corners["DLF"].orientation)];
-    face[L9] = corners["DLF"].name[(1 + corners["DLF"].orientation) % 3];
-    face[F7] = corners["DLF"].name[(2 + corners["DLF"].orientation) % 3];
-
-    face[D7] = corners["DBL"].name[(0 + corners["DBL"].orientation)];
-    face[B9] = corners["DBL"].name[(1 + corners["DBL"].orientation) % 3];
-    face[L7] = corners["DBL"].name[(2 + corners["DBL"].orientation) % 3];
-
-    face[D9] = corners["DRB"].name[(0 + corners["DRB"].orientation)];
-    face[R9] = corners["DRB"].name[(1 + corners["DRB"].orientation) % 3];
-    face[B7] = corners["DRB"].name[(2 + corners["DRB"].orientation) % 3];
-
-    face[U6] = edges["UR"].name[(0 + edges["UR"].orientation)];
-    face[R2] = edges["UR"].name[(1 + edges["UR"].orientation) % 2];
-
-    face[U8] = edges["UF"].name[(0 + edges["UF"].orientation)];
-    face[F2] = edges["UF"].name[(1 + edges["UF"].orientation) % 2];
-
-    face[U4] = edges["UL"].name[(0 + edges["UL"].orientation)];
-    face[L2] = edges["UL"].name[(1 + edges["UL"].orientation) % 2];
-
-    face[U2] = edges["UB"].name[(0 + edges["UB"].orientation)];
-    face[B2] = edges["UB"].name[(1 + edges["UB"].orientation) % 2];
-
-    face[D6] = edges["DR"].name[(0 + edges["DR"].orientation)];
-    face[R8] = edges["DR"].name[(1 + edges["DR"].orientation) % 2];
-
-    face[D2] = edges["DF"].name[(0 + edges["DF"].orientation)];
-    face[F8] = edges["DF"].name[(1 + edges["DF"].orientation) % 2];
-
-    face[D4] = edges["DL"].name[(0 + edges["DL"].orientation)];
-    face[L8] = edges["DL"].name[(1 + edges["DL"].orientation) % 2];
-
-    face[D8] = edges["DB"].name[(0 + edges["DB"].orientation)];
-    face[B8] = edges["DB"].name[(1 + edges["DB"].orientation) % 2];
-
-    face[F6] = edges["FR"].name[(0 + edges["FR"].orientation)];
-    face[R4] = edges["FR"].name[(1 + edges["FR"].orientation) % 2];
-
-    face[F4] = edges["FL"].name[(0 + edges["FL"].orientation)];
-    face[L6] = edges["FL"].name[(1 + edges["FL"].orientation) % 2];
-
-    face[B6] = edges["BL"].name[(0 + edges["BL"].orientation)];
-    face[L4] = edges["BL"].name[(1 + edges["BL"].orientation) % 2];
-
-    face[B4] = edges["BR"].name[(0 + edges["BR"].orientation)];
-    face[R6] = edges["BR"].name[(1 + edges["BR"].orientation) % 2];
-
-    return face;
-}
-
 const string Cube::corner_names[8] = {"URF", "UFL", "ULB", "UBR", "DFR", "DLF", "DBL", "DRB"};
 const string Cube::edge_names[12] = {"UR", "UF", "UL", "UB", "DR", "DF", "DL", "DB", "FR", "FL", "BL", "BR"};
 const char Cube::face_names[6] = {'u', 'r', 'f', 'd', 'l', 'b'};
@@ -138,6 +55,7 @@ void Cube::init_members()
     edge_names_after_ymove["BR"] = "FR";
 
     init_2FL();
+    init_OLL();
 }
 
 void Cube::apply_moves(string moves)
@@ -244,58 +162,87 @@ void Cube::y()
     }
 }
 
-bool Cube::is_cross()
+vector<int> Cube::get_facelets()
 {
-    if (edges["DF"].orientation != 0
-     || edges["DF"].name != "DF"
-     || edges["DR"].orientation != 0
-     || edges["DR"].name != "DR"
-     || edges["DB"].orientation != 0
-     || edges["DB"].name != "DB"
-     || edges["DL"].orientation != 0
-     || edges["DL"].name != "DL")
-        return false;
-    return true;
-}
+    vector<int> face(54);
+    string str;
 
-string Cube::to_string_forcross()
-{
-    string s = "";
-    for (auto edge : edges)
-    {
-        if (edge.second.name[0] == 'D')
-            s += edge.second.name + to_string(edge.second.orientation);
-        else
-            s += "*";
-    }
-    return s;
-}
+    face[U5] = 'U';
+    face[R5] = 'R';
+    face[F5] = 'F';
+    face[D5] = 'D';
+    face[L5] = 'L';
+    face[B5] = 'B';
 
-// par example : le tout premier algo de speedcubingtips insertion simple sappelle
-// "***E0C1**"
-string Cube::to_string_2FL()
-{
-    string s = "";
-    s += (edges["UL"].name == "FR") ? ("E" + to_string(edges["UL"].orientation)) : "*";
-    s += (edges["UB"].name == "FR") ? ("E" + to_string(edges["UB"].orientation)) : "*";
-    s += (edges["UF"].name == "FR") ? ("E" + to_string(edges["UF"].orientation)) : "*";
-    s += (edges["UR"].name == "FR") ? ("E" + to_string(edges["UR"].orientation)) : "*";
+    face[U9] = corners["URF"].name[(0 + corners["URF"].orientation)];
+    face[R1] = corners["URF"].name[(1 + corners["URF"].orientation) % 3];
+    face[F3] = corners["URF"].name[(2 + corners["URF"].orientation) % 3];
 
-    s += (corners["URF"].name == "DFR") ? ("C" + to_string(corners["URF"].orientation)) : "*";
-    
-    s += (edges["FR"].name == "FR") ? ("E" + to_string(edges["FR"].orientation)) : "*";
+    face[U7] = corners["UFL"].name[(0 + corners["UFL"].orientation)];
+    face[F1] = corners["UFL"].name[(1 + corners["UFL"].orientation) % 3];
+    face[L3] = corners["UFL"].name[(2 + corners["UFL"].orientation) % 3];
 
-    s += (corners["DFR"].name == "DFR") ? ("C" + to_string(corners["DFR"].orientation)) : "*";
-    return s;
-}
+    face[U1] = corners["ULB"].name[(0 + corners["ULB"].orientation)];
+    face[L1] = corners["ULB"].name[(1 + corners["ULB"].orientation) % 3];
+    face[B3] = corners["ULB"].name[(2 + corners["ULB"].orientation) % 3];
 
-string Cube::to_string_OLL()
-{
-    string s = to_string(edges["UL"].orientation) + to_string(corners["ULB"].orientation) \
-        + to_string(edges["UB"].orientation) + to_string(corners["UBR"].orientation) \
-        + to_string(edges["UR"].orientation) + to_string(corners["URF"].orientation) \
-        + to_string(edges["UF"].orientation) + to_string(corners["UFL"].orientation);
-    return s;
+    face[U3] = corners["UBR"].name[(0 + corners["UBR"].orientation)];
+    face[B1] = corners["UBR"].name[(1 + corners["UBR"].orientation) % 3];
+    face[R3] = corners["UBR"].name[(2 + corners["UBR"].orientation) % 3];
+
+    face[D3] = corners["DFR"].name[(0 + corners["DFR"].orientation)];
+    face[F9] = corners["DFR"].name[(1 + corners["DFR"].orientation) % 3];
+    face[R7] = corners["DFR"].name[(2 + corners["DFR"].orientation) % 3];
+
+    face[D1] = corners["DLF"].name[(0 + corners["DLF"].orientation)];
+    face[L9] = corners["DLF"].name[(1 + corners["DLF"].orientation) % 3];
+    face[F7] = corners["DLF"].name[(2 + corners["DLF"].orientation) % 3];
+
+    face[D7] = corners["DBL"].name[(0 + corners["DBL"].orientation)];
+    face[B9] = corners["DBL"].name[(1 + corners["DBL"].orientation) % 3];
+    face[L7] = corners["DBL"].name[(2 + corners["DBL"].orientation) % 3];
+
+    face[D9] = corners["DRB"].name[(0 + corners["DRB"].orientation)];
+    face[R9] = corners["DRB"].name[(1 + corners["DRB"].orientation) % 3];
+    face[B7] = corners["DRB"].name[(2 + corners["DRB"].orientation) % 3];
+
+    face[U6] = edges["UR"].name[(0 + edges["UR"].orientation)];
+    face[R2] = edges["UR"].name[(1 + edges["UR"].orientation) % 2];
+
+    face[U8] = edges["UF"].name[(0 + edges["UF"].orientation)];
+    face[F2] = edges["UF"].name[(1 + edges["UF"].orientation) % 2];
+
+    face[U4] = edges["UL"].name[(0 + edges["UL"].orientation)];
+    face[L2] = edges["UL"].name[(1 + edges["UL"].orientation) % 2];
+
+    face[U2] = edges["UB"].name[(0 + edges["UB"].orientation)];
+    face[B2] = edges["UB"].name[(1 + edges["UB"].orientation) % 2];
+
+    face[D6] = edges["DR"].name[(0 + edges["DR"].orientation)];
+    face[R8] = edges["DR"].name[(1 + edges["DR"].orientation) % 2];
+
+    face[D2] = edges["DF"].name[(0 + edges["DF"].orientation)];
+    face[F8] = edges["DF"].name[(1 + edges["DF"].orientation) % 2];
+
+    face[D4] = edges["DL"].name[(0 + edges["DL"].orientation)];
+    face[L8] = edges["DL"].name[(1 + edges["DL"].orientation) % 2];
+
+    face[D8] = edges["DB"].name[(0 + edges["DB"].orientation)];
+    face[B8] = edges["DB"].name[(1 + edges["DB"].orientation) % 2];
+
+    face[F6] = edges["FR"].name[(0 + edges["FR"].orientation)];
+    face[R4] = edges["FR"].name[(1 + edges["FR"].orientation) % 2];
+
+    face[F4] = edges["FL"].name[(0 + edges["FL"].orientation)];
+    face[L6] = edges["FL"].name[(1 + edges["FL"].orientation) % 2];
+
+    face[B6] = edges["BL"].name[(0 + edges["BL"].orientation)];
+    face[L4] = edges["BL"].name[(1 + edges["BL"].orientation) % 2];
+
+    face[B4] = edges["BR"].name[(0 + edges["BR"].orientation)];
+    face[R6] = edges["BR"].name[(1 + edges["BR"].orientation) % 2];
+
+    return face;
 }
 
 vector<int> Cube::get_face(char faceid) // TODO
