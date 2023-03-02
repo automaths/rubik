@@ -1,5 +1,14 @@
 #include "../Cubos.hpp"
 
+string Cube::to_string_PLL()
+{
+    string s = edges["UL"].name + " " + corners["ULB"].name \
+    + " " + edges["UB"].name + " " + corners["UBR"].name \
+    + " " + edges["UR"].name + " " + corners["URF"].name \
+    + " " + edges["UF"].name + " " + corners["UFL"].name;
+    return s;
+}
+
 void Cube::init_PLL()
 {
     // Permutations des arrêtes ou des coins seulement
@@ -20,12 +29,12 @@ void Cube::init_PLL()
     algo_PLL["UL ULB UF URF UR UBR UB UFL"] = "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R";
     // Permutation deux coins en diagonale
     algo_PLL["UL URF UR UBR UB ULB UF UFL"] = "R' U R' Dw' R' F' R2 U' R' U R' F R F";
-    algo_PLL["UB URF UF UBR UR ULB UF UFL"] = "F R U' R' U' R U R' F' R U R' U' R' F R F'";
+    algo_PLL["UB URF UL UBR UR ULB UF UFL"] = "F R U' R' U' R U R' F' R U R' U' R' F R F'";
     algo_PLL["UL URF UF UBR UR ULB UB UFL"] = "L U' R U2 L' U R' L U' R U2 L' U R' U";
     algo_PLL["UL ULB UF UFL UR URF UB UBR"] = "R' U L' U2 R U' L R' U L' U2 R U' L U'";
     // Double rotation
     algo_PLL["UR UBR UL UFL UB URF UF ULB"] = "R2 Uw R' U R' U' R Uw' R2 y' R' U R";
-    algo_PLL["UR UFL UB UBR UF UBR UL URF"] = "R2 Uw' R U' R U R' Uw R2 y R U' R'";
+    algo_PLL["UR UFL UB UBR UF ULB UL URF"] = "R2 Uw' R U' R U R' Uw R2 y R U' R'";
     algo_PLL["UF UBR UL UFL UR URF UB ULB"] = "R U R' y' R2 Uw' R U' R' U R' Uw R2";
     algo_PLL["UB UFL UF UBR UR ULB UL URF"] = "R' U' R y R2 Uw R' U R U' R Uw' R2";
 }
