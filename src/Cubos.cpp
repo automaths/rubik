@@ -15,6 +15,7 @@ map<string, string> Cube::corner_names_after_ymove;
 map<string, string> Cube::edge_names_after_ymove;
 map<string, string> Cube::algo_2FL;
 map<string, string> Cube::algo_OLL;
+map<string, string> Cube::algo_PLL;
 
 void Cube::init_members()
 {
@@ -56,6 +57,7 @@ void Cube::init_members()
 
     init_2FL();
     init_OLL();
+    init_PLL();
 }
 
 void Cube::apply_moves(string moves)

@@ -7,7 +7,8 @@ SRCS        := 	main.cpp \
 				ascii_rubik.cpp \
 				cross.cpp \
 				2FL.cpp \
-				translatedOLL.cpp \
+				OLL.cpp \
+				PLL.cpp \
 
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 OBJS        := $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

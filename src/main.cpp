@@ -19,6 +19,7 @@ int main()
         astar_for_cross(rk);
         rk.solve_2FL_v2();
         rk.solve_OLL();
+        rk.solve_PLL();
     }
     // rk.find_2FL();
     print_ascii_rubik(rk);

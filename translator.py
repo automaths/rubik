@@ -46,8 +46,8 @@ def translate(moves):
 
 print(translate("Rw U R' U' Rw' R U R U' R'"))
 
-file = open("src/OLL.cpp", "r")
-res = open("src/translatedOLL.cpp", "w")
+file = open("src/original_PLL.cpp", "r")
+res = open("src/PLL.cpp", "w")
 for line in file:
     i = line.find("\"] = \"")
     if i != -1:
