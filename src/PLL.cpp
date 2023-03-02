@@ -1,21 +1,12 @@
 #include "../Cubos.hpp"
 
-string Cube::to_string_PLL()
-{
-    string s = edges["UL"].name + " " + corners["ULB"].name \
-    + " " + edges["UB"].name + " " + corners["UBR"].name \
-    + " " + edges["UR"].name + " " + corners["URF"].name \
-    + " " + edges["UF"].name + " " + corners["UFL"].name;
-    return s;
-}
-
 void Cube::init_PLL()
 {
     // Permutations des arrêtes ou des coins seulement
     algo_PLL["UR ULB UB UBR UF URF UL UFL"] = "R2 U R U R' U' R' U' R' U R'";
     algo_PLL["UF ULB UB UBR UL URF UR UFL"] = "R U' R U R U R U' R' U' R2";
-    algo_PLL["UB ULB UL UBR UF URF UR UFL"] = "M2 U M2 U M' U2 M2 U2 M' U2";
-    algo_PLL["UR ULB UF UBR UL URF UB UFL"] = "M2 U M2 U2 M2 U M2";
+    algo_PLL["UB ULB UL UBR UF URF UR UFL"] = "R' U' R2 U R U R' U' R U R U' R U' R'";
+    algo_PLL["UR ULB UF UBR UL URF UB UFL"] = "L R U2 L' R' F' B' U2 F B";
     algo_PLL["UL UBR UB URF UR ULB UF UFL"] = "x R' U R' D2 R U' R' D2 R2";
     algo_PLL["UL ULB UB UFL UR UBR UF URF"] = "x' R U' R D2 R' U R D2 R2";
     algo_PLL["UL UFL UB URF UR UBR UF ULB"] = "x' R U' R' D R U R' D' R U R' D R U' R' D'";

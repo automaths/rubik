@@ -12,7 +12,7 @@ void Cube::init_OLL()
     algo_OLL["00000102"] = "R2 D R' U2 R D' R' U2 R'";
     algo_OLL["00000000"] = "";
     // Tous les coins orientés correctement
-    algo_OLL["00001010"] = "M U M' U2 M U M'";
+    algo_OLL["00001010"] = "F R U R' U' F2 L' U' L U F";
     algo_OLL["00100010"] = "R U R' U' Rw R' U R U' Rw'";
     // En forme de "P"
     algo_OLL["12100001"] = "Fw R U R' U' Fw'";
