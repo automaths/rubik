@@ -10,13 +10,23 @@ void Cube::solve_PLL()
                 if (algo_PLL.find(to_string_PLL()) != algo_PLL.end())   {
                     string cas = to_string_PLL();
                     apply_moves(algo_PLL[to_string_PLL()]);
-                    if (to_string_PLL() != "UL ULB UB UBR UR URF UF UFL") {
+                    Cube::res_moves += algo_PLL[to_string_PLL()] + " | ";
+                    for (int k = 0; k < 4 && to_string_PLL() != "UL ULB UB UBR UR URF UF UFL"; k++) {
+                        rotate('u', 1);
+                    }
+
+                    if (i == 1)
+                        Cube::res_moves += "U ";
+                    else if (i == 2)
+                        Cube::res_moves += "U2 ";
+                    else if (i == 3)
+                        Cube::res_moves += "U' ";
+                    else if (to_string_PLL() != "UL ULB UB UBR UR URF UF UFL") {
                         cout << "ERROR: Algo didn't solve : " << cas << endl;
                         exit(1);
                     }
                     else
                         cout << "PLL OK" << endl;
-                    Cube::res_moves += algo_PLL[to_string_PLL()] + " | ";
                     return;
                 }
                 rotate('u', 1);
