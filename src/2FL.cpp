@@ -3,7 +3,6 @@
 
 void Cube::solve_2FL_v2()
 {
-    cout << algo_2FL.size() << endl;
     while (true)
     {
         int good = 0;
@@ -15,10 +14,12 @@ void Cube::solve_2FL_v2()
                 impossible++;
             y();
         }
-        if (good == 4)
+        if (good == 4)  {
+            cout << "2FL OK" << endl;
             return;
+        }
         if (impossible + good == 4) {
-            cout << "impossible case"  << good << endl;
+            cout << "impossible cases: "  << good << ". I need a bit of magic !" << endl;
             while (algo_2FL.find(to_string_2FL()) != algo_2FL.end())
                 y();
             one_corner_2FL();
@@ -35,7 +36,6 @@ void Cube::solve_2FL_v2()
             y();
         }
     }
-    cout << algo_2FL.size() << endl;
 }
 
 
@@ -119,24 +119,39 @@ void Cube::one_corner_2FL()
         int i = 0;
         while (to_string_2FL().substr(0, 5) != "**E1*" && to_string_2FL().substr(0, 5) != "***E0" && i < 8) {
             rotate('u', 1);
-            cout << to_string_2FL().substr(0, 5) << "   "  << to_string_2FL() << endl;
             i++;
         }
         if (i == 8)
         {
-            cout << to_string_2FL() << endl;
+            cout << to_string_2FL() << "WATCHOUT FATAL ERROR" << endl;
             exit(1);
         }
     }
-    cout << "the string is : " << to_string_2FL();
     if (algo_2FL.find(to_string_2FL()) == algo_2FL.end())   {
+        cout << "the string is : " << to_string_2FL();
         cout << " and the algo is not found ! ERROR" << endl;
         exit(1);
     }
-    else
-        cout << " and the algo is " << algo_2FL[to_string_2FL()] << endl;
     apply_moves(algo_2FL[to_string_2FL()]);
     // cout << "the result is: " << to_string_2FL() << endl;
+}
+
+// par example : le tout premier algo de speedcubingtips insertion simple sappelle
+// "***E0C1**"
+string Cube::to_string_2FL()
+{
+    string s = "";
+    s += (edges["UL"].name == "FR") ? ("E" + to_string(edges["UL"].orientation)) : "*";
+    s += (edges["UB"].name == "FR") ? ("E" + to_string(edges["UB"].orientation)) : "*";
+    s += (edges["UF"].name == "FR") ? ("E" + to_string(edges["UF"].orientation)) : "*";
+    s += (edges["UR"].name == "FR") ? ("E" + to_string(edges["UR"].orientation)) : "*";
+
+    s += (corners["URF"].name == "DFR") ? ("C" + to_string(corners["URF"].orientation)) : "*";
+    
+    s += (edges["FR"].name == "FR") ? ("E" + to_string(edges["FR"].orientation)) : "*";
+
+    s += (corners["DFR"].name == "DFR") ? ("C" + to_string(corners["DFR"].orientation)) : "*";
+    return s;
 }
 
 void Cube::init_2FL()
