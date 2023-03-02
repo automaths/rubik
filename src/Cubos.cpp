@@ -98,6 +98,7 @@ map<string, string> Cube::corner_names_after_ymove;
 map<string, string> Cube::edge_names_after_ymove;
 map<string, string> Cube::algo_2FL;
 map<string, string> Cube::algo_OLL;
+map<string, string> Cube::algo_PLL;
 
 void Cube::init_members()
 {
@@ -295,6 +296,15 @@ string Cube::to_string_OLL()
         + to_string(edges["UB"].orientation) + to_string(corners["UBR"].orientation) \
         + to_string(edges["UR"].orientation) + to_string(corners["URF"].orientation) \
         + to_string(edges["UF"].orientation) + to_string(corners["UFL"].orientation);
+    return s;
+}
+
+string Cube::to_string_PLL()
+{
+    string s = edges["UL"].name + " " + corners["ULB"].name \
+    + " " + edges["UB"].name + " " + corners["UBR"].name \
+    + " " + edges["UR"].name + " " + corners["URF"].name \
+    + " " + edges["UF"].name + " " + corners["UFL"].name;
     return s;
 }
 
