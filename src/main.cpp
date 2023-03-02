@@ -28,6 +28,7 @@ int main()
         rk.solve_2FL_v2();
         rk.solve_OLL();
         rk.solve_PLL();
+        cout << rk.res_moves << endl;
     }
     // rk.find_2FL();
     print_ascii_rubik(rk);

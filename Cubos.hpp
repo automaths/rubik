@@ -131,6 +131,7 @@ static void init_members();
 static void init_2FL();
 static void init_OLL();
 static void init_PLL();
+static string res_moves;
 
 public:
     map<string, Corner> corners;

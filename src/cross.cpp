@@ -26,13 +26,12 @@ vector<string> astar_for_cross(Cube& cube)
                 Cube next = current.cube;
                 next.rotate(face, i);
                 vector<string> moves = current.moves;
-                moves.push_back(string(1, face) + to_string(i));
+                moves.push_back(string(1, face+'A'-'a') + (i==2?"'":i==2?"2":""));
                 if (next.is_cross())
                 {
                     cout << "Found cross!" << endl;
                     for (string move : moves)
-                        cout << move << " ";
-                    cout << endl;
+                        Cube::res_moves += move + " ";
                     cube = next;
                     return moves;
                 }

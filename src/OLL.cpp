@@ -12,9 +12,11 @@ void Cube::solve_OLL()
             }
             else
                 cout << "OLL OK" << endl;
+            Cube::res_moves += algo_OLL[to_string_OLL()] + " | ";
             return;
         }
         y();
+        Cube::res_moves += "y ";
     }
     cout << "ERROR: " << to_string_OLL() << " not found !" << endl;
     exit(1);
