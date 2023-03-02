@@ -56,3 +56,5 @@ for line in file:
         line = line[:i + 6] + moves + line[-3:]
     res.write(line)
 
+# translate_file("OLL");
+
