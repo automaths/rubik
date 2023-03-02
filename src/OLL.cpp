@@ -12,11 +12,9 @@ void Cube::solve_OLL()
             }
             else
                 cout << "OLL OK" << endl;
-            Cube::res_moves += algo_OLL[to_string_OLL()] + " | ";
             return;
         }
         y();
-        Cube::res_moves += "y ";
     }
     cout << "ERROR: " << to_string_OLL() << " not found !" << endl;
     exit(1);
@@ -108,5 +106,5 @@ void Cube::init_OLL()
     algo_OLL["11121010"] = "F R U R' U F' U2 F' L F L'";
     algo_OLL["10101211"] = "L' B2 R B R' B L2 D2 R' D' R D' L";
     algo_OLL["10121011"] = "R U R' U R' F R F' U2 R' F R F'";
-    algo_OLL["10101010"] = "L' R B R B R' B' L2 R2 D R D' L'";
+    algo_OLL["10101010"] = "R2 U2 R' F2 U2 R2 F' R2 U2 F2 R U2 R2 U'";
 }

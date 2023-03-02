@@ -106,5 +106,5 @@ void Cube::init_OLL()
     algo_OLL["11121010"] = "F R U R' U F' U2 F' L F L'";
     algo_OLL["10101211"] = "L' B2 R B R' B L2 D2 R' D' R D' L";
     algo_OLL["10121011"] = "R U R' U R' F R F' U2 R' F R F'";
-    algo_OLL["10101010"] = "Rw' R U R U R' U' Rw2 R2 U R U' Rw'";
+    algo_OLL["10101010"] = "R2 U2 R' F2 U2 R2 F' R2 U2 F2 R U2 R2 U'";
 }
