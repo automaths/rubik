@@ -43,16 +43,16 @@ def translate(moves):
             res.append(move)
     return " ".join(res)
 
+def translate_file(filename):
+    file = open("src/original_"+filename+".cpp", "r")
+    res = open("src/"+filename+".cpp", "w")
+    for line in file:
+        i = line.find("\"] = \"")
+        if i != -1:
+            moves = line[i + 6:-3]
+            moves = translate(moves)
+            line = line[:i + 6] + moves + line[-3:]
+        res.write(line)
 
-print(translate("Rw U R' U' Rw' R U R U' R'"))
-
-file = open("src/original_PLL.cpp", "r")
-res = open("src/PLL.cpp", "w")
-for line in file:
-    i = line.find("\"] = \"")
-    if i != -1:
-        moves = line[i + 6:-3]
-        moves = translate(moves)
-        line = line[:i + 6] + moves + line[-3:]
-    res.write(line)
-
+# print(translate("y' R’ F R’ B2 R F’ R’ B2 R2"))
+translate_file("OLL")

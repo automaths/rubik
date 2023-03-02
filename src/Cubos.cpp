@@ -95,6 +95,12 @@ void Cube::rotate(char faceid, int direction)
 {
     direction = (direction + 4) % 4;
 
+    if (!face_corners.count(faceid) || !face_edges.count(faceid))
+    {
+        cout << "Invalid faceid: " << faceid << endl;
+        exit(1);
+    }
+
     vector<string> &rot_corners = Cube::face_corners[faceid];
     vector<string> &rot_edges = Cube::face_edges[faceid];
 
