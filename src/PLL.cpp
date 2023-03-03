@@ -9,12 +9,11 @@ void Cube::solve_PLL()
             {
                 if (algo_PLL.find(to_string_PLL()) != algo_PLL.end())   {
                     string cas = to_string_PLL();
+                    Cube::res_moves += algo_PLL[to_string_PLL()] + " ";
                     apply_moves(algo_PLL[to_string_PLL()]);
-                    Cube::res_moves += algo_PLL[to_string_PLL()] + " | ";
                     for (int k = 0; k < 4 && to_string_PLL() != "UL ULB UB UBR UR URF UF UFL"; k++) {
                         rotate('u', 1);
                     }
-
                     if (i == 1)
                         Cube::res_moves += "U ";
                     else if (i == 2)
@@ -30,10 +29,12 @@ void Cube::solve_PLL()
                     return;
                 }
                 rotate('u', 1);
-                cout << "the algo tried is: " << to_string_PLL() << endl;
+                Cube::res_moves += "U ";
+                // cout << "the algo tried is: " << to_string_PLL() << endl;
             }
         }
         y();
+        Cube::res_moves += "y ";
     }
     cout << "ERROR: " << to_string_PLL() << " not found !" << endl;
     exit(1);

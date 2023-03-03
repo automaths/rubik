@@ -1,6 +1,32 @@
 #include "../Cubos.hpp"
 #include <sstream>
 
+string formula_cleaner(string formula)
+{
+    int yscope = 0;
+    string vuelta = "LFRB";
+    string result = "";
+
+    for (int i = 0; i < formula.size(); ++i)
+    {
+        if (formula[i] == 'y'){
+            i++;
+            if (formula[i] == '\'')
+                yscope+=3;
+            else if (formula[i] == '2')
+                yscope += 2;
+            else
+                yscope++;
+            continue;
+        }
+        else if (vuelta.find(formula[i]) != string::npos){
+            formula[i] = vuelta[(yscope+vuelta.find(formula[i])) % 4];
+        }
+        result += formula[i];
+    }
+    return result;
+}
+
 string formula_reverser(string formula)
 {
     string parsed;

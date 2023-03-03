@@ -1,6 +1,15 @@
 
 #include "../Cubos.hpp"
 
+void test_res()
+{
+    Cube rk;
+    string res = formula_cleaner(Cube::res_moves);
+    cout << res << endl;
+    rk.apply_moves(res);
+    print_ascii_rubik(rk);
+}
+
 int main()
 {
     Cube::init_members();
@@ -19,11 +28,13 @@ int main()
     {
         rk.shuffle();
         astar_for_cross(rk);
+        test_res();
         rk.solve_2FL_v2();
+        test_res();
         rk.solve_OLL();
+        test_res();
         rk.solve_PLL();
-        cout << rk.res_moves << endl;
+        test_res();
     }
-    print_ascii_rubik(rk);
 
 }

@@ -32,7 +32,7 @@ vector<string> astar_for_cross(Cube& cube)
                     cout << "Found cross!" << endl;
                     for (string move : moves)
                         Cube::res_moves += move + " ";
-                    Cube::res_moves += "| ";
+                    // Cube::res_moves += "\n";
                     cube = next;
                     return moves;
                 }

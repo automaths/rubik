@@ -5,6 +5,7 @@ void Cube::solve_OLL()
     for (int i = 0; i < 4; i++)
     {
         if (algo_OLL.find(to_string_OLL()) != algo_OLL.end())   {
+            Cube::res_moves += algo_OLL[to_string_OLL()] + " ";
             apply_moves(algo_OLL[to_string_OLL()]);
             if (to_string_OLL() != "00000000") {
                 cout << "ERROR: Algo didn't solve : " << to_string_OLL() << endl;
@@ -15,6 +16,7 @@ void Cube::solve_OLL()
             return;
         }
         y();
+        Cube::res_moves += "y ";
     }
     cout << "ERROR: " << to_string_OLL() << " not found !" << endl;
     exit(1);
