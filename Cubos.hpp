@@ -74,7 +74,8 @@ class Cube;
 int print_ascii_rubik(Cube &rk);
 vector<string> astar_for_cross(Cube& cube);
 bool algo_checker(std::string (Cube::*tostr)(), map<string, string> algos);
-string formula_cleaner(string formula);
+string y_translator(string formula);
+string clean_formula(string formula);
 
 
 class Corner {

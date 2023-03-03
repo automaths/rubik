@@ -1,17 +1,26 @@
 
 #include "../Cubos.hpp"
 
-void test_res(Cube rk)
+void print_res(Cube rk)
 {
-    string res = formula_cleaner(Cube::res_moves);
-    // string res2 = opti_formula(res);
+    string res = y_translator(Cube::res_moves);
+    string res2 = clean_formula(res);
+    Cube rk2 = rk;
     rk.apply_moves(res);
+    rk2.apply_moves(res2);
     if (!rk.is_solved())
     {
-        cout << "Error: failed solve. " << endl;
+        cout << "Error: failed solve with y_translator. " << endl;
         print_ascii_rubik(rk);
         exit(1);
     }
+    if (!rk2.is_solved())
+    {
+        cout << "Error: failed solve with clean formula. " << endl;
+        print_ascii_rubik(rk);
+        exit(1);
+    }
+    cout << res2 << endl;
 }
 
 bool check_string(string argz)

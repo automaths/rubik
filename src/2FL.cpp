@@ -185,52 +185,52 @@ void Cube::init_2FL()
     // Insertions simples
     algo_2FL["***E0C1**"] = "U R U' R'";
     algo_2FL["**E1*C2**"] = "y' U' R' U R y";
-    algo_2FL["E1***C1**"] = "y' R' U' R y";
+    algo_2FL["E1***C1**"] = "F' U' F";
     algo_2FL["*E0**C2**"] = "R U R'";
     // F2L Cas 1
-    algo_2FL["*E1**C1**"] = "U' R U' R' U y' R' U' R y";
-    algo_2FL["E0***C2**"] = "U' R U R' U R U R'";
-    algo_2FL["***E1C1**"] = "U' R U2 R' U y' R' U' R y";
+    algo_2FL["*E1**C1**"] = "y F2 U R U' R' F2 y'";
+    algo_2FL["E0***C2**"] = "y2 B2 U' R' U R B2 y2";
+    algo_2FL["***E1C1**"] = "y' R U2 R2 U' R2 U' R' y";
     algo_2FL["**E0*C2**"] = "R' U2 R2 U R2' U R";
     algo_2FL["**E1*C1**"] = "y' U R' U R U' R' U' R y";
     algo_2FL["***E0C2**"] = "U' R U' R' U R U R'";    
     // F2L Cas 2
-    algo_2FL["*E0**C1**"] = "U' R U R' U2 R U' R'";
-    algo_2FL["E1***C2**"] = "y' U R' U' R U2 R' U R y";
-    algo_2FL["E0***C1**"] = "U' R U2 R' U2 R U' R'";
-    algo_2FL["*E1**C2**"] = "y' U R' U2 R U2 R' U R y";
+    algo_2FL["*E0**C1**"] = "F2 L' U' L U F2";
+    algo_2FL["E1***C2**"] = "R2 B U B' U' R2";
+    algo_2FL["E0***C1**"] = "R U B U2 B' U R'";
+    algo_2FL["*E1**C2**"] = "y' R' U' F' U2 F U' R y";
     // F2L Cas 3
-    algo_2FL["*E0**C0**"] = "U R U2 R' U R U' R'";
-    algo_2FL["E1***C0**"] = "y' U' R' U2 R U' R' U R y";
-    algo_2FL["E0***C0**"] = "U2 R U R' U R U' R'";
+    algo_2FL["*E0**C0**"] = "U R U2 R2 F R F'";
+    algo_2FL["E1***C0**"] = "U' F' U2 F2 R' F' R";
+    algo_2FL["E0***C0**"] = "R B U2 B' R'";
     algo_2FL["*E1**C0**"] = "F' L' U2 L F";
     // Coin et arrete non connetes correctement
     algo_2FL["**E0*C1**"] = "y' R' U R U2 y R U R'";
     algo_2FL["***E1C2**"] = "R U' R' U2 F' U' F";
     algo_2FL["***E0C0**"] = "R U2 R' U' R U R'";
-    algo_2FL["**E1*C0**"] = "y' R' U2 R U R' U' R y"; //"y' R' U2 R U R' U' R"
+    algo_2FL["**E1*C0**"] = "F' U2 F U F' U' F";
     algo_2FL["**E0*C0**"] = "U2 R2 U2 R' U' R U' R2";
     algo_2FL["***E1C0**"] = "y' U2 R2 U2 R U R' U R2 y";
     // Coin en place et arrete en face superieure
-    algo_2FL["***E0**C0"] = "R' F' R U R U' R' F";
+    algo_2FL["***E0**C0"] = "U' F' U F U R U' R'";
     algo_2FL["**E1***C0"] = "U R U' R' U' F' U F";
-    algo_2FL["***E0**C2"] = "R U' R' U R U' R'";
-    algo_2FL["**E1***C1"] = "y' R' U R U' R' U R y";
+    algo_2FL["***E0**C2"] = "R U' R2 F R F'";
+    algo_2FL["**E1***C1"] = "F' U F2 R' F' R";
     algo_2FL["**E1***C2"] = "y' R' U' R U R' U' R y";
     algo_2FL["***E0**C1"] = "R U R' U' R U R'";
     // Arrete en place et coin en face superieure
     algo_2FL["****C0E1*"] = "R U' R' U y' R' U R y";
-    algo_2FL["****C0E0*"] = "U R U' R' U R U' R' U R U' R'";
+    algo_2FL["****C0E0*"] = "R2 U R2 U R2 U2 R2";
     algo_2FL["****C1E0*"] = "U' R U' R' U2 R U' R'";
     algo_2FL["****C2E0*"] = "U' R U2 R' U R U R'";
     algo_2FL["****C1E1*"] = "U2 R U' R' U' F' U' F";
     algo_2FL["****C2E1*"] = "U F' U' F U' R U R'";
     // Coin et arrete en place
-    algo_2FL["*****E0C2"] = "R U R' U' R U2 R' U' R U R'";
     algo_2FL["*****E0C0"] = "";
-    algo_2FL["*****E1C0"] = "R U' R' U y' R' U2 R U2 R' U R y";
-    algo_2FL["*****E0C1"] = "R U R' U2 R U' R' U R U R'";
-    algo_2FL["*****E1C2"] = "F' U F U2 R U R' U R U' R'";
-    algo_2FL["*****E1C1"] = "R U R' U' R U' R' U2 F' U' F";
+    algo_2FL["*****E1C0"] = "R2 U2 F R2 F' U2 R' U R'";
+    algo_2FL["*****E0C2"] = "R2 U2 R' U' R U' R' U2 R'";
+    algo_2FL["*****E0C1"] = "R U2 R U R' U R U2 R2'";
+    algo_2FL["*****E1C2"] = "F2 L' U' L U y L U' L y'";
+    algo_2FL["*****E1C1"] = "R U' R' F' L' U2 L F";
 }
 

@@ -64,7 +64,7 @@ void Cube::init_PLL()
     algo_PLL["UB UBR UL ULB UR URF UF UFL"] = "R' U L' U2 R U' R' U2 R L U'";
     algo_PLL["UL ULB UB URF UF UBR UR UFL"] = "R U R' F' R U R' U' R' F R2 U' R' U'";
     algo_PLL["UR ULB UB URF UL UBR UF UFL"] = "R U R' U' R' F R2 U' R' U' R U R' F'";
-    algo_PLL["UL ULB UF URF UR UBR UB UFL"] = "R' U' F' R U R' U' R' F R2 U' R' U' R U R' U R";
+    algo_PLL["UL ULB UF URF UR UBR UB UFL"] = "y' L F R' F' L' F' D2 B' L' B D2 F' R F2 y";
     // Permutation deux coins en diagonale
     algo_PLL["UL URF UR UBR UB ULB UF UFL"] = "R' U R' U' B' R' B2 U' B' U B' R B R";
     algo_PLL["UB URF UL UBR UR ULB UF UFL"] = "F R U' R' U' R U R' F' R U R' U' R' F R F'";
