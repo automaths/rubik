@@ -7,3 +7,4 @@ Vizualizer key bindings:
 - Use shift to turn counter-clockwise
 - Use 'p' to play moves read on STDIN
 
+Project by adesvall and automaths

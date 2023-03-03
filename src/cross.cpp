@@ -9,7 +9,8 @@ vector<string> astar_for_cross(Cube& cube)
 {
     priority_queue<SearchCube> queue;
     unordered_set<string>  visited;
-
+    
+    Cube::res_moves = "";
     queue.push(SearchCube(cube, vector<string>()));
     while (!queue.empty())
     {
@@ -21,7 +22,6 @@ vector<string> astar_for_cross(Cube& cube)
         if (current.cube.is_cross())
         {
             // cout << "Found cross!" << endl;
-            Cube::res_moves = "";
             for (string move : current.moves)
                 Cube::res_moves += move + " ";
             // Cube::res_moves += "\n";
