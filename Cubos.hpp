@@ -77,7 +77,6 @@ bool algo_checker(std::string (Cube::*tostr)(), map<string, string> algos);
 string y_translator(string formula);
 string clean_formula(string formula);
 
-
 class Corner {
 public:
     string name;
@@ -135,6 +134,7 @@ static void init_2FL();
 static void init_OLL();
 static void init_PLL();
 static string res_moves;
+static int nb_moves;
 
 public:
     map<string, Corner> corners;

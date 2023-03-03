@@ -17,11 +17,11 @@ void Cube::solve_2FL_v2()
 
         }
         if (good == 4)  {
-            cout << "2FL OK" << endl;
+            // cout << "2FL OK" << endl;
             return;
         }
         if (impossible + good == 4) {
-            cout << "impossible cases: "  << good << ". I need a bit of magic !" << endl;
+            // cout << "impossible cases: "  << good << ". I need a bit of magic !" << endl;
             while (algo_2FL.find(to_string_2FL()) != algo_2FL.end()){
                 y();
                 Cube::res_moves += "y ";
@@ -35,8 +35,8 @@ void Cube::solve_2FL_v2()
                 cout << "ERROR: " << cas << endl;
                 exit(1);
             }
-            else if (cas != "*****E0C0")
-                cout << "OK" << endl;
+            // else if (cas != "*****E0C0")
+            //     cout << "OK" << endl;
             Cube::res_moves += algo_2FL[cas] + " y ";
             y();
         }

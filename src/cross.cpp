@@ -20,7 +20,7 @@ vector<string> astar_for_cross(Cube& cube)
             continue;
         if (current.cube.is_cross())
         {
-            cout << "Found cross!" << endl;
+            // cout << "Found cross!" << endl;
             Cube::res_moves = "";
             for (string move : current.moves)
                 Cube::res_moves += move + " ";

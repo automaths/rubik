@@ -1,20 +1,19 @@
 #include "../Cubos.hpp"
 #include <sstream>
 
+int Cube::nb_moves = 0;
+
 string clean_formula(string formula)
 {
     string parsed;
     stringstream input_ss(formula);
     list<string> moves;
-    static int nb_moves_tot = 0;
-    static int nb_echantillion = 0;
 
     while (getline(input_ss, parsed, ' '))
         moves.push_back(parsed);
 
-    int nb_moves = 0;
-
     string result = "";
+    Cube::nb_moves = 0;
     char cur[2] = {0, 0};
     for (auto move : moves)
     {
@@ -36,20 +35,15 @@ string clean_formula(string formula)
         }
         if (cur[0] != 0 && cur[1] != 0) {
             result += string(1, cur[0]) + string(cur[1] == 1 ? "" : cur[1] == 2 ? "2" : "\'") + " ";
-            nb_moves++;
+            Cube::nb_moves++;
         }
         cur[0] = move[0];
         cur[1] = direction;
     }
     if (cur[0] != 0 && cur[1] != 0)    {
         result += string(1, cur[0]) + string(cur[1] == 1 ? "" : cur[1] == 2 ? "2" : "\'") + " ";
-        nb_moves++;
+        Cube::nb_moves++;
     }
-    // Stats
-    nb_moves_tot += nb_moves;
-    nb_echantillion++;
-    cout << "Optimized formula: " << nb_moves << " moves" << endl;
-    cout << "Mean: " << nb_moves_tot / nb_echantillion << " moves on " << nb_echantillion << " samples." << endl;
     return result;
 }
 

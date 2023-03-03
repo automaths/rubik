@@ -99,7 +99,7 @@ void Cube::rotate(char faceid, int direction)
 
     if (!face_corners.count(faceid) || !face_edges.count(faceid))
     {
-        cout << "Invalid faceid: '" << faceid << "'" << endl;
+        // cout << "Invalid faceid: '" << faceid << "'" << endl;
         if (faceid != ' ')
             exit(1);
         else return;
