@@ -66,6 +66,7 @@
 #include <list>
 #include <map>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 

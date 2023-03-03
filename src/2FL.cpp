@@ -160,7 +160,6 @@ void Cube::one_corner_2FL()
     }
     Cube::res_moves += algo_2FL[to_string_2FL()] + " ";
     apply_moves(algo_2FL[to_string_2FL()]);
-    // cout << "the result is: " << to_string_2FL() << endl;
 }
 
 // par example : le tout premier algo de speedcubingtips insertion simple sappelle
