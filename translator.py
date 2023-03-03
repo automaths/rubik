@@ -55,4 +55,4 @@ def translate_file(filename):
         res.write(line)
 
 # print(translate("y' R’ F R’ B2 R F’ R’ B2 R2"))
-translate_file("OLL")
+

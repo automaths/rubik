@@ -180,7 +180,9 @@ void Cube::shuffle(int n)
     for (int i = 0; i < n; i++)
     {
         char faceid = Cube::face_names[rand() % 6];
-        rotate(faceid, rand() % 4);
+        int direction = 1 + rand() % 3;
+        rotate(faceid, direction);
+        Cube::res_moves += string(1, faceid - 'a' + 'A') + string(direction == 1 ? "" : direction == 2 ? "2" : "\'") + " ";
     }
 }
 
