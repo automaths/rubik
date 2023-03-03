@@ -30,18 +30,18 @@ void Cube::solve_2FL_v2()
         }
         else {
             string cas = to_string_2FL();
-            apply_moves(algo_2FL[to_string_2FL()]);
+            apply_moves(algo_2FL[cas]);
             if (to_string_2FL() != "*****E0C0") {
                 cout << "ERROR: " << cas << endl;
                 exit(1);
             }
             else if (cas != "*****E0C0")
                 cout << "OK" << endl;
-            Cube::res_moves += algo_2FL[to_string_2FL()] + "y ";
+            Cube::res_moves += algo_2FL[cas] + " y ";
             y();
         }
     }
-    Cube::res_moves += "| ";
+    Cube::res_moves += "|| ";
 }
 
 // deprecated
@@ -158,8 +158,8 @@ void Cube::one_corner_2FL()
         cout << " and the algo is not found ! ERROR" << endl;
         exit(1);
     }
-    apply_moves(algo_2FL[to_string_2FL()]);
     Cube::res_moves += algo_2FL[to_string_2FL()] + " ";
+    apply_moves(algo_2FL[to_string_2FL()]);
     // cout << "the result is: " << to_string_2FL() << endl;
 }
 

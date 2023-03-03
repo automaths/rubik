@@ -73,6 +73,7 @@ class Cube;
 int print_ascii_rubik(Cube &rk);
 vector<string> astar_for_cross(Cube& cube);
 bool algo_checker(std::string (Cube::*tostr)(), map<string, string> algos);
+string formula_cleaner(string formula);
 
 
 class Corner {
@@ -162,6 +163,7 @@ public:
     void solve_2FL_v2();
     void solve_OLL();
     void solve_PLL();
+    bool is_solved();
 };
 
 class SearchCube {
@@ -177,7 +179,7 @@ public:
         this->distance = 8;
         for (string edge : Cube::edge_names)
         {
-            if (cube.edges[edge].orientation == 0 && cube.edges[edge].name == edge)
+            if (edge[0] == 'D' && cube.edges[edge].orientation == 0 && cube.edges[edge].name == edge)
                 this->distance -= 2;
         }
     }

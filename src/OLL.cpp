@@ -5,6 +5,7 @@ void Cube::solve_OLL()
     for (int i = 0; i < 4; i++)
     {
         if (algo_OLL.find(to_string_OLL()) != algo_OLL.end())   {
+            Cube::res_moves += algo_OLL[to_string_OLL()] + " ";
             apply_moves(algo_OLL[to_string_OLL()]);
             if (to_string_OLL() != "00000000") {
                 cout << "ERROR: Algo didn't solve : " << to_string_OLL() << endl;
@@ -12,7 +13,6 @@ void Cube::solve_OLL()
             }
             else
                 cout << "OLL OK" << endl;
-            Cube::res_moves += algo_OLL[to_string_OLL()] + " | ";
             return;
         }
         y();
@@ -52,8 +52,8 @@ void Cube::init_OLL()
     // En forme de "P"
     algo_OLL["12100001"] = "B U L U' L' B'";
     algo_OLL["00111200"] = "B' U' R' U R B";
-    algo_OLL["12100002"] = "R U B' U' R' U R B R'";
-    algo_OLL["12000012"] = "R' U' F U R U' R' F' R";
+    algo_OLL["11100002"] = "R U B' U' R' U R B R'";
+    algo_OLL["11000012"] = "R' U' F U R U' R' F' R";
     // En forme de "W" (W shapes)
     algo_OLL["01001210"] = "R U R' U R U' R' U' R' F R F'";
     algo_OLL["10020011"] = "L' U' L U' L' U L U L F' L' F";
@@ -61,7 +61,7 @@ void Cube::init_OLL()
     algo_OLL["12000212"] = "L F2 R' F' R F' L'";
     algo_OLL["11110001"] = "L' B2 R B R' B L";
     // En forme de "L"
-    algo_OLL["20211110"] = "F R U R' U' R U R' U' F'";
+    algo_OLL["02021111"] = "F R U R' U' R U R' U' F'";
     algo_OLL["11010212"] = "F' L' U' L U L' U' L U F";
     algo_OLL["02011211"] = "R' F' L F' L' F L F' L' F2 R";
     algo_OLL["12010211"] = "L F R' F R F' R' F R F2 L'";
@@ -92,7 +92,7 @@ void Cube::init_OLL()
     algo_OLL["02110010"] = "R U R' U' B' R' F R F' B";
     // En forme de "I" (I Shapes)
     algo_OLL["12011201"] = "R U2 R2 U' R U' R' U2 F R F'";
-    algo_OLL["12011202"] = "R U R' U R U' B U' B' R'";
+    algo_OLL["11011202"] = "R U R' U R U' B U' B' R'";
     algo_OLL["02110211"] = "F R U R' U' R F' L F R' F' L'";
     algo_OLL["02120111"] = "B U L U' L' U L U' L' B'";
     // En forme de "L" de Cavalier (Knight Move Shapes)
@@ -104,9 +104,9 @@ void Cube::init_OLL()
     algo_OLL["12111211"] = "R U2 R' R' F R F' U2 R' F R F'";
     algo_OLL["12121111"] = "F R U R' U' F' B U L U' L' B'";
     algo_OLL["11111011"] = "B U L U' L' B' U' F R U R' U' F'";
-    algo_OLL["10101211"] = "B U L U' L' B' U [F R U R' U' F'";
+    algo_OLL["12101212"] = "B U L U' L' B' U F R U R' U' F'";
     algo_OLL["11121010"] = "F R U R' U F' U2 F' L F L'";
-    algo_OLL["10101211"] = "L' B2 R B R' B L2 D2 R' D' R D' L";
+    algo_OLL["10101211"] = "R' U2 F R U R' U' F2 U2 F R";
     algo_OLL["10121011"] = "R U R' U R' F R F' U2 R' F R F'";
-    algo_OLL["10101010"] = "L' R B R B R' B' L2 R2 D R D' L'";
+    algo_OLL["10101010"] = "R2 U2 R' F2 U2 R2 F' R2 U2 F2 R U2 R2 U'";
 }

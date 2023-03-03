@@ -99,8 +99,10 @@ void Cube::rotate(char faceid, int direction)
 
     if (!face_corners.count(faceid) || !face_edges.count(faceid))
     {
-        cout << "Invalid faceid: " << faceid << endl;
-        exit(1);
+        cout << "Invalid faceid: '" << faceid << "'" << endl;
+        if (faceid != ' ')
+            exit(1);
+        else return;
     }
 
     vector<string> &rot_corners = Cube::face_corners[faceid];
@@ -255,25 +257,19 @@ vector<int> Cube::get_facelets()
     return face;
 }
 
-vector<int> Cube::get_face(char faceid) // TODO
+bool Cube::is_solved()
 {
-    vector<int> face;
-
-    // for (string c : face_corners[faceid])
-    // {
-    //     c = "UFR"
-    //     i = index de faceid dans c;
-    //     i += orientation du coin;
-    //     i %= 3;
-    //     corners[c].name[i];
-
-    //     cout << c << c << endl;
-    // }
-    // for (string e : face_edges[faceid])
-    // {
-    //     cout << e.name << e.orientation << endl;
-        
-    // }
-    return face;
+    for (auto &corner : corners)
+    {
+        if (corner.first != corner.second.name || corner.second.orientation != 0)
+            return false;
+    }
+    for (auto &edge : edges)
+    {
+        if (edge.first != edge.second.name || edge.second.orientation != 0)
+            return false;
+    }
+    return true;
 }
+
 
