@@ -220,8 +220,11 @@ def launch():
         print(move)
         face = move[0].lower()
         direction = 1
-        if len(move) == 2:
-            direction = 2 + ['2', '\''].index(move[1])
+        if len(move) >= 2:
+            if move[1] == '2':
+                direction = 2
+            elif move[1] == '\'':
+                direction = 3
         cube.rotate(face, direction)
         # root.update()
         time.sleep(0.2)
@@ -239,6 +242,8 @@ def key_press(event):
 
 canvas = None
 cube = Cube()
+
+
 # cube.shuffle()
 # cube.backtrack_for_cross()
 # exit()
@@ -250,6 +255,19 @@ canvas.pack()
 cube.draw()
 
 moves = read_moves()
+
+if len(sys.argv) >= 2:
+    moves = sys.argv[1].split()
+    for move in moves:
+        face = move[0].lower()
+        direction = 1
+        if len(move) >= 2:
+            if move[1] == '2':
+                direction = 2
+            elif move[1] == '\'':
+                direction = 3
+        cube.rotate(face, direction)
+        
 
 root.bind('<KeyPress>', key_press)
 root.mainloop()

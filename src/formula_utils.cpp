@@ -1,7 +1,7 @@
 #include "../Cubos.hpp"
 #include <sstream>
 
-string opti_formula(string formula)
+string clean_formula(string formula)
 {
     string parsed;
     stringstream input_ss(formula);
@@ -22,7 +22,7 @@ string opti_formula(string formula)
         if (move.size() == 0)
             continue;
         int direction = 1;
-        if (move.size() == 2)
+        if (move.size() >= 2)
         {
             if (move[1] == '\'')
                 direction = 3;
@@ -50,13 +50,10 @@ string opti_formula(string formula)
     nb_echantillion++;
     cout << "Optimized formula: " << nb_moves << " moves" << endl;
     cout << "Mean: " << nb_moves_tot / nb_echantillion << " moves on " << nb_echantillion << " samples." << endl;
-    cout << formula << endl;
-    cout << result << endl;
-
     return result;
 }
 
-string formula_cleaner(string formula)
+string y_translator(string formula)
 {
     int yscope = 0;
     string vuelta = "LFRB";
