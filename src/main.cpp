@@ -3,11 +3,14 @@
 
 void test_res(Cube rk)
 {
-    string res = Cube::res_moves;
-    // string res = formula_cleaner(Cube::res_moves);
+    Cube rk2 = rk;
+    // string res = Cube::res_moves;
+    string res = formula_cleaner(Cube::res_moves);
     cout << res << endl;
     rk.apply_moves(res);
     print_ascii_rubik(rk);
+    rk2.apply_moves(Cube::res_moves);
+    print_ascii_rubik(rk2);
 }
 
 int main()
@@ -30,18 +33,21 @@ int main()
         print_ascii_rubik(rk);
 
         astar_for_cross(rk);
-        test_res(cpy);
-
-        exit(1);
-        cpy = rk;
         rk.solve_2FL_v2();
-        test_res(cpy);
-        cpy = rk;
         rk.solve_OLL();
-        test_res(cpy);
-        cpy = rk;
         rk.solve_PLL();
+
         test_res(cpy);
+        cout << "====================" << endl;
+        cout << formula_cleaner(Cube::res_moves) << endl;
     }
+
+    // rk.shuffle();
+    // print_ascii_rubik(rk);
+    // astar_for_cross(rk);
+    // rk.solve_2FL_v2();
+    // rk.solve_OLL();
+    // rk.solve_PLL();
+    // print_ascii_rubik(rk);
 
 }

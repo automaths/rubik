@@ -1,6 +1,52 @@
 #include "../Cubos.hpp"
 #include <sstream>
 
+string opti_formula(string formula)
+{
+    string parsed;
+    stringstream input_ss(formula);
+    list<string> moves;
+
+    while (getline(input_ss, parsed, ' '))
+        moves.push_back(parsed);
+
+    int nb_moves = 0;
+
+    string result = "";
+    char cur[2] = {0, 0};
+    for (auto move : moves)
+    {
+        // cout << '-' << string(1, cur[0]) << "-"  << endl;
+        if (move.size() == 0)
+            continue;
+        int direction = 1;
+        if (move.size() == 2)
+        {
+            if (move[1] == '\'')
+                direction = 3;
+            else if (move[1] == '2')
+                direction = 2;
+        }
+        if (move[0] == cur[0]){
+            cur[1] += (char)direction;
+            cur[1] %= 4;
+            continue;
+        }
+        if (cur[0] != 0) {
+            result += string(1, cur[0]) + string(cur[1] == 1 ? "" : cur[1] == 2 ? "2" : "\'") + " ";
+            nb_moves++;
+        }
+        cur[0] = move[0];
+        cur[1] = direction;
+    }
+    if (cur[0] != 0)    {
+        result += string(1, cur[0]) + string(cur[1] == 1 ? "" : cur[1] == 2 ? "2" : "\'") + " ";
+        nb_moves++;
+    }
+    cout << "Optimized formula: " << nb_moves << " moves" << endl;
+    return result;
+}
+
 string formula_cleaner(string formula)
 {
     int yscope = 0;
@@ -24,7 +70,7 @@ string formula_cleaner(string formula)
         }
         result += formula[i];
     }
-    return result;
+    return opti_formula(result);
 }
 
 string formula_reverser(string formula)

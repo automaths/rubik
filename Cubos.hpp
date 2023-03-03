@@ -178,7 +178,7 @@ public:
         this->distance = 8;
         for (string edge : Cube::edge_names)
         {
-            if (cube.edges[edge].orientation == 0 && cube.edges[edge].name == edge)
+            if (edge[0] == 'D' && cube.edges[edge].orientation == 0 && cube.edges[edge].name == edge)
                 this->distance -= 2;
         }
     }

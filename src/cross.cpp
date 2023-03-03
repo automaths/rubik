@@ -35,7 +35,7 @@ vector<string> astar_for_cross(Cube& cube)
                 Cube next = current.cube;
                 next.rotate(face, i);
                 vector<string> moves = current.moves;
-                moves.push_back(string(1, face+'A'-'a') + (i==2?"'":i==2?"2":""));
+                moves.push_back(string(1, face+'A'-'a') + (i==3 ? "'" : i==2 ? "2" : ""));
                 queue.push(SearchCube(next, moves));
             }
         }
