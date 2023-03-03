@@ -257,8 +257,8 @@ cube.draw()
 moves = read_moves()
 
 if len(sys.argv) >= 2:
-    moves = sys.argv[1].split()
-    for move in moves:
+    mmmmmhhhhh = sys.argv[1].split()
+    for move in mmmmmhhhhh:
         face = move[0].lower()
         direction = 1
         if len(move) >= 2:

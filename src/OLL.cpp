@@ -11,8 +11,7 @@ void Cube::solve_OLL()
                 cout << "ERROR: Algo didn't solve : " << to_string_OLL() << endl;
                 exit(1);
             }
-            else
-                cout << "OLL OK" << endl;
+            // cout << "OLL OK" << endl;
             return;
         }
         y();

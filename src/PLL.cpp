@@ -19,7 +19,7 @@ void Cube::solve_PLL()
                         cout << "ERROR: Algo didn't solve : " << cas << endl;
                         exit(1);
                     }
-                    cout << "PLL OK" << endl;
+                    // cout << "PLL OK" << endl;
                     return;
                 }
                 rotate('u', 1);

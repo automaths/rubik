@@ -77,24 +77,14 @@ bool algo_checker(std::string (Cube::*tostr)(), map<string, string> algos);
 string y_translator(string formula);
 string clean_formula(string formula);
 
-
 class Corner {
 public:
     string name;
     int orientation;
 
-    Corner(){}
-    Corner(string str)
-    {
-        name = str;
-        orientation = 0;
-    }
-    Corner& operator=(Corner const &other)
-    {
-        name = other.name;
-        orientation = other.orientation;
-        return *this;
-    }
+    Corner();
+    Corner(string str);
+    Corner& operator=(Corner const &other);
 };
 
 class Edge {
@@ -102,18 +92,9 @@ public:
     string name;
     int orientation;
     
-    Edge(){}
-    Edge(string str)
-    {
-        name = str;
-        orientation = 0;
-    }
-    Edge& operator=(Edge const &other)
-    {
-        name = other.name;
-        orientation = other.orientation;
-        return *this;
-    }
+    Edge();
+    Edge(string str);
+    Edge& operator=(Edge const &other);
 };
 
 
@@ -135,18 +116,13 @@ static void init_2FL();
 static void init_OLL();
 static void init_PLL();
 static string res_moves;
+static int nb_moves;
 
 public:
     map<string, Corner> corners;
     map<string, Edge> edges;
 
-    Cube()
-    {
-        for (int i = 0; i < 8; ++i)
-            corners[corner_names[i]] = Corner(corner_names[i]);
-        for (int i = 0; i < 12; ++i)
-            edges[edge_names[i]] = Edge(edge_names[i]);
-    }
+    Cube();
     void rotate(char faceid, int direction = 1);
     void apply_move(string move);
     void apply_moves(string moves);
@@ -174,23 +150,8 @@ public:
     vector<string> moves;
     int distance;
 
-    SearchCube(Cube& cube, vector<string> moves)
-    {
-        this->cube = cube;
-        this->moves = moves;
-        this->distance = 8;
-        for (string edge : Cube::edge_names)
-        {
-            if (edge[0] == 'D' && cube.edges[edge].orientation == 0 && cube.edges[edge].name == edge)
-                this->distance -= 2;
-        }
-    }
-
-    bool operator<(const SearchCube& other) const
-    {
-        return distance + moves.size() > other.distance + other.moves.size();
-    }
-
+    SearchCube(Cube& cube, vector<string> moves);
+    bool operator<(const SearchCube& other) const;
 };
 
 #endif
