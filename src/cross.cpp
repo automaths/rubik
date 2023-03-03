@@ -18,6 +18,15 @@ vector<string> astar_for_cross(Cube& cube)
         string str = current.cube.to_string_forcross();
         if (visited.find(str) != visited.end())
             continue;
+        if (current.cube.is_cross())
+        {
+            cout << "Found cross!" << endl;
+            for (string move : current.moves)
+                Cube::res_moves += move + " ";
+            // Cube::res_moves += "\n";
+            cube = current.cube;
+            return current.moves;
+        }
         visited.insert(str);
         for (char face : Cube::face_names)
         {
@@ -27,15 +36,6 @@ vector<string> astar_for_cross(Cube& cube)
                 next.rotate(face, i);
                 vector<string> moves = current.moves;
                 moves.push_back(string(1, face+'A'-'a') + (i==2?"'":i==2?"2":""));
-                if (next.is_cross())
-                {
-                    cout << "Found cross!" << endl;
-                    for (string move : moves)
-                        Cube::res_moves += move + " ";
-                    // Cube::res_moves += "\n";
-                    cube = next;
-                    return moves;
-                }
                 queue.push(SearchCube(next, moves));
             }
         }
