@@ -18,6 +18,43 @@ map<string, string> Cube::algo_OLL;
 map<string, string> Cube::algo_PLL;
 string Cube::res_moves;
 
+Corner::Corner(){}
+
+Corner::Corner(string str)
+{
+    name = str;
+    orientation = 0;
+}
+
+Corner& Corner::operator=(Corner const &other)
+{
+    name = other.name;
+    orientation = other.orientation;
+    return *this;
+}
+
+Edge::Edge(){}
+
+Edge::Edge(string str)
+{
+    name = str;
+    orientation = 0;
+}
+
+Edge& Edge::operator=(Edge const &other)
+{
+    name = other.name;
+    orientation = other.orientation;
+    return *this;
+}
+
+Cube::Cube()
+{
+    for (int i = 0; i < 8; ++i)
+        corners[corner_names[i]] = Corner(corner_names[i]);
+    for (int i = 0; i < 12; ++i)
+        edges[edge_names[i]] = Edge(edge_names[i]);
+}
 
 void Cube::init_members()
 {
@@ -270,6 +307,23 @@ bool Cube::is_solved()
             return false;
     }
     return true;
+}
+
+SearchCube::SearchCube(Cube& cube, vector<string> moves)
+{
+    this->cube = cube;
+    this->moves = moves;
+    this->distance = 8;
+    for (string edge : Cube::edge_names)
+    {
+        if (edge[0] == 'D' && cube.edges[edge].orientation == 0 && cube.edges[edge].name == edge)
+            this->distance -= 2;
+    }
+}
+
+bool SearchCube::operator<(const SearchCube& other) const
+{
+    return distance + moves.size() > other.distance + other.moves.size();
 }
 
 

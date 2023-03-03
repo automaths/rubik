@@ -19,8 +19,6 @@ void print_res(Cube rk)
         print_ascii_rubik(rk);
         exit(1);
     }
-
-
     cout << res2 << endl;
 }
 
@@ -34,7 +32,7 @@ int main()
     // algo_checker(&Cube::to_string_PLL, Cube::algo_PLL);
     // cout << "PLL algos checked." << endl;
     // exit(0);
-    
+
     Cube::init_members();
     int nb_moves_tot = 0;
     int nb_echantillion = 0;
