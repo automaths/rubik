@@ -163,6 +163,7 @@ public:
     void solve_2FL_v2();
     void solve_OLL();
     void solve_PLL();
+    bool is_solved();
 };
 
 class SearchCube {

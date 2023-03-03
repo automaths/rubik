@@ -3,14 +3,15 @@
 
 void test_res(Cube rk)
 {
-    Cube rk2 = rk;
-    // string res = Cube::res_moves;
     string res = formula_cleaner(Cube::res_moves);
-    cout << res << endl;
+    // string res2 = opti_formula(res);
     rk.apply_moves(res);
-    print_ascii_rubik(rk);
-    rk2.apply_moves(Cube::res_moves);
-    print_ascii_rubik(rk2);
+    if (!rk.is_solved())
+    {
+        cout << "Error: failed solve. " << endl;
+        print_ascii_rubik(rk);
+        exit(1);
+    }
 }
 
 int main()
@@ -39,7 +40,7 @@ int main()
 
         test_res(cpy);
         cout << "====================" << endl;
-        cout << formula_cleaner(Cube::res_moves) << endl;
+        // cout << formula_cleaner(Cube::res_moves) << endl;
     }
 
     // rk.shuffle();

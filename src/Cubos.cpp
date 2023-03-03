@@ -257,25 +257,19 @@ vector<int> Cube::get_facelets()
     return face;
 }
 
-vector<int> Cube::get_face(char faceid) // TODO
+bool Cube::is_solved()
 {
-    vector<int> face;
-
-    // for (string c : face_corners[faceid])
-    // {
-    //     c = "UFR"
-    //     i = index de faceid dans c;
-    //     i += orientation du coin;
-    //     i %= 3;
-    //     corners[c].name[i];
-
-    //     cout << c << c << endl;
-    // }
-    // for (string e : face_edges[faceid])
-    // {
-    //     cout << e.name << e.orientation << endl;
-        
-    // }
-    return face;
+    for (auto &corner : corners)
+    {
+        if (corner.first != corner.second.name || corner.second.orientation != 0)
+            return false;
+    }
+    for (auto &edge : edges)
+    {
+        if (edge.first != edge.second.name || edge.second.orientation != 0)
+            return false;
+    }
+    return true;
 }
+
 
